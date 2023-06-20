@@ -68,19 +68,17 @@ const sideBar = () => {
             <div className={"border-b border-amber-50 "}>
                 {navigations.map((navigation, idx) => (
                     <div key={idx} className={""}>
-                        <div>
-                            <NavigationItem Icon={navigation.icon} href={navigation.path} name={navigation.pageName} />
-                            {navigation.pageChildren.map((pageChild, i) => (
-                                <div key={i} className={""}>
-                                    <ul
-                                        className={"dropdown-item"}
-                                        onClick={hideDropdown}
-                                    >
-                                        <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
+                        <NavigationItem Icon={navigation.icon} href={navigation.path} name={navigation.pageName} />
+                        {navigation.pageChildren.map((pageChild, i) => (
+                            <div key={i} className={""}>
+                                <ul
+                                    className={"dropdown-item"}
+                                    onClick={hideDropdown}
+                                >
+                                    <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>

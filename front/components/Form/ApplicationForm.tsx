@@ -11,10 +11,6 @@ const ApplicationForm= () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const validate = () => {
-    if(customCtx.form.employment === ""){
-      alert("働き方を選択してください")
-      return
-    }
     if(customCtx.form.name === ""){
       alert("氏名を入力してください")
       return
@@ -25,6 +21,14 @@ const ApplicationForm= () => {
     }
     if(customCtx.form.gender === "") {
       alert( "性別を選択してください" )
+      return
+    }
+    if(customCtx.form.time === "") {
+      alert( "転職時期を選択してください" )
+      return
+    }
+    if(customCtx.form.prefecture === ""){
+      alert("都道府県を選択してください")
       return
     }
     sendDataToServer()
@@ -56,11 +60,11 @@ const ApplicationForm= () => {
             <div className=''>
               <div className='flex font-bold items-center mb-1'>
                 <div className='md:text-xs text-[9px] bg-[#e95464] py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>必須</div>
-                <label className={'text-[16px] text-[#12243a]'}>かな</label>
+                <label className={'text-[16px] text-[#12243a]'}>フリガナ</label>
               </div>
               <Text
                   type={"text"}
-                  placeholder={"やまだたろう"}
+                  placeholder={"ヤマダタロウ"}
                   inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
                   property={"kana"}
               />
@@ -69,7 +73,7 @@ const ApplicationForm= () => {
             <div className=''>
               <div className='flex font-bold items-center mb-1'>
                 <div className='md:text-xs text-[9px] bg-[#e95464] py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>必須</div>
-                <label className={'text-[16px] text-[#12243a]'}>働き方</label>
+                <label className={'text-[16px] text-[#12243a]'}>性別</label>
                 <div className={'font-light text-xs md:mr-0 ml-auto'}>※いずれか1つ選択</div>
               </div>
               <Radio
@@ -85,8 +89,8 @@ const ApplicationForm= () => {
             <div className=''>
               <div className='flex font-bold items-center mb-1'>
                 <div className='md:text-xs text-[9px] bg-[#e95464] py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>必須</div>
-                <label className={'text-[16px] text-[#12243a]'}>働き方</label>
-                <div className={'font-light text-xs md:mr-0 ml-auto'}>※いずれか1つ選択</div>
+                <label className={'text-[16px] text-[#12243a]'}>転職時期</label>
+                <div className={'font-light text-xs md:mr-0 ml-auto'}>※複数可</div>
               </div>
               <Radio
                   gridstyle={'grid grid-cols-2 gap-2 md:text-[16px] text-[14px]'}
@@ -95,23 +99,6 @@ const ApplicationForm= () => {
                   array={["1ヶ月以内", "3ヶ月以内", "半年以内", "希望なし"]}
                   property={"time"}
                   isMultiple={true}
-              />
-            </div>
-
-
-            <div className=''>
-              <div className='flex font-bold items-center mb-1'>
-                <div className='md:text-xs text-[9px] bg-[#e95464] py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>必須</div>
-                <label className={'text-[16px] text-[#12243a]'}>働き方</label>
-                <div className={'font-light text-xs md:mr-0 ml-auto'}>※いずれか1つ選択</div>
-              </div>
-              <Radio
-                  gridstyle={'grid grid-cols-2 gap-2 md:text-[16px] text-[14px]'}
-                  btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
-                  changebtnstyle={'bg-[#1fb5ae] text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
-                  array={["正社員", "パート", "派遣", "こだわらない"]}
-                  property={"employment"}
-                  isMultiple={false}
               />
             </div>
 
