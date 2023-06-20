@@ -172,3 +172,4 @@ go.work
 .env
 src/tmp
 docker/db/data
+src/vendor

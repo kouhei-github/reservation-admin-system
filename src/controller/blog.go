@@ -2,9 +2,9 @@ package controller
 
 import (
 	"encoding/json"
-	"net-http/myapp/repository"
-	"net-http/myapp/service"
 	"net/http"
+	"reservation/repository"
+	"reservation/service"
 )
 
 func CreateBlogHandler(w http.ResponseWriter, r *http.Request) {

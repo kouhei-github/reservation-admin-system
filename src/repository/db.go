@@ -3,7 +3,7 @@ package repository
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"net-http/myapp/config"
+	"reservation/config"
 )
 
 var db *gorm.DB
