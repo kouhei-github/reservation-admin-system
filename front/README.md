@@ -1,38 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## 1. ディレクトリ構成
+Nextjsでアプリケーションを構築する際のディレクトリ構造を説明する
+```text
+依存関係としては
+components/
+↓
+pages/
+↓
+services/
+↓
+repositories/
+というようにしています。
+責務がしっかり分離されるように、たとえ一つの関数を呼び出すだけであったとしても、依存関係はスキップせずにコードを書いています。
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### components/
+```text
+全ページ共有、ページ固有のコンポーネントを分けます。
+こうすることで、再利用するものと再利用しないものを分けます。
+ページ固有のコンポーネントは実は複数ページで使える可能性もあるので、ディレクトリはきっちり分けずに、ユーザーのおおまかなアクションの区切りで数個のディレクトリに分けています。
+レイヤードアーキテクチャでいうUI層、MVCでいうViewを担っています。
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
+### pages/
+```text
+Next.js固有のディレクトリです。
+MVCでいうコントローラ的位置づけで、ユーザーからのリクエストを受け取って、getServerSidePropsやgetStaticPropsを用いながらservicesの関数を呼び出してレスポンスを返すコードを書きます。
+jsxを書けるので、ここに直接jsxを書いてもいいのですが、見た目部分は分けたかったので、大部分はcomponentsで定義し、pages配下ではcomponentsで定義されたコンポーネントを呼び出して、jsxを組み立てるという構成にしています。
+レイヤードアーキテクチャでいうUI層とApplication層の紐付け、MVCでいうControllerを担っています。
+```
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### services/
+```text
+ユーザーのアクションに応じて、データの加工（結合や集計など）を行うコードを置いておきます。
+加工元となるデータ取得は、repositories配下の関数を呼び出すことにより行っています。
+ユーザーの1アクションに対して、1つのサービス関数を作るイメージでいます。
+ここも、componentsと同様に、おおまかなアクションの区切りでディレクトリを分けています。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+レイヤードアーキテクチャでいうApplication層を担っています。
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### repositories/
+```text
+DBやSaaSにアクセスする層になります。
+データを取得して、データマッピングに従い、オブジェクト化する責務を持たせます。
+一つのテーブルに対して、一つのファイルにしていけば良さそうだと思っています。
+使用しているDBやSaaSに依存したコードはここに配置します。
+使用しているDBやSaaSが変更されたときは、ここを変更するだけで対応できるようにしています！と、言いたいところではありますが、使用している基盤技術をごっそり変える時、例えばREST APIからGraphQLに移行するといった場合では、servicesの関数も変更する必要が出てくると思っています。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+レイヤードアーキテクチャでいうInfrastructure層を担っています。
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### models/
+```text
+ここは人によってはentities、types、interfaces等、様々な名付け方をしそうですが、自分はmodels、entitiesの二択でmodelsにしました。好きな名前にするといいと思います。
+modelごとにファイルを分けています。
+また、servicesで加工したデータと、repositoriesで取得したデータの区別が付きやすいように、servicesで生成するオブジェクトについては、モデル名にXXXDataのようなサフィックスをつけるようにしています。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+レイヤードアーキテクチャでいうDomain層、MVCでいうModelを担っています。
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+### libs/
+```text
+使用しているライブラリ固有のコードで、初期化や設定のコードなど、データ取得に絡まないコードはここに配置します。
+ライブラリ毎にまるっと切り替わる可能性があるので、ライブラリごとにディレクトリを分けています。
+```
+
+---
+
+### utils/
+```text
+グローバルで使える便利な関数（ex.文字列の加工など）を配置しています。
+```
+---
+### constants/
+```text
+グローバルで参照される定数を定義したファイルを配置しています。
+```

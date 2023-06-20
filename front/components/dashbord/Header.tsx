@@ -1,4 +1,4 @@
-import {PickItUp} from "@/types/customConvinienseType";
+import {PickItUp} from "@/utils/customConvinienseType";
 import {ChangeEvent, useState} from "react";
 import {useRouter} from "next/router";
 import BoundBox from "@/components/animation/BoundBox";
@@ -12,25 +12,38 @@ type menu = {
 // 予約数用の用の型
 type reservation = PickItUp<menu, "name">  & {value: number}
 const Header = () => {
+    // メニュー
     const menus: menu[] = [{name: "ログアウト", path: "/logout"}, {name: "ユーザー追加", path: "/register"}]
+
+    // メニューを選択した時のページ遷移の情報を持たせる
     const [path, setPath] = useState<string>("選択してください")
+
+     // routerの生成
     const router = useRouter()
+
+    /**
+     * ページ遷移を行う
+     * @param event
+     */
     const movePage = (event: ChangeEvent<HTMLSelectElement>) => {
         setPath(event.target.value)
         router.push(event.target.value)
     }
 
+    // 予約サイトの累計評価
     const reservations: reservation[] = [
         {name: "食べログ", value: 18 },
         {name: "ぐるなび", value: 4 },
         {name: "Retty", value: 1 },
         {name: "一休.com", value: 7 },
     ]
+
     // プログレスバー
     const progress = "w-3/4"
 
     // バウンドボックスを表示させるかどう
     const [showBoundBox, setShowBoundBox] = useState<boolean>(false);
+
     return (
         <div className={"bg-[rgb(0,81,203)] text-white w-full flex items-center justify-center"}>
             <div className={"w-1/5 text-center"}>
@@ -71,7 +84,7 @@ const Header = () => {
                 >
                     <option value="選択してください">選択してください</option>
                     {menus.map((menu, index) => (
-                        <option value={menu.name} key={index}>{menu.name}</option>
+                        <option value={menu.path} key={index}>{menu.name}</option>
                     ))}
                 </select>
 

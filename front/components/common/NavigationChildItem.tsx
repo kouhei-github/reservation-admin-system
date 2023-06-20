@@ -1,24 +1,23 @@
-import {JSX} from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 type Props = {
-    Icon: JSX.Element;
-    href: string;
-    name: string;
+  href: string;
+  name: string;
 }
 
-const NavigationItem = ({Icon, href, name}: Props) => {
-    const router = useRouter();
-    return (
+const NavigationItem = ({href, name}: Props) => {
+  const router = useRouter();
+  return (
+      <li>
         <Link
             href={href}
             className={`${router.pathname == href ? "": ""}`}
         >
-            <div>{Icon}</div>
-            <p>{name}</p>
+          <p>{name}</p>
         </Link>
-    )
+      </li>
+  )
 }
 
 export default NavigationItem

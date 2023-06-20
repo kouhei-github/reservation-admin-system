@@ -2,49 +2,53 @@
 
 const LoginBox = () => {
     return (
-        <div className={"w-[350px] h-56 bg-blue-200 rounded-lg border-2 shadow-lg"}>
-            <div className={"m-2 p-2"}>
-                <div className={"flex justify-center items-center"}>
-                    <svg className={"h-7"} fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
-                    </svg>
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                ショクハブ
+            </a>
+            <div className="w-full bg-[rgb(0,81,203)] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Sign in to your account
+                </h1>
+                <form className="space-y-4 md:space-y-6" action="#">
+                <div>
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                        email
+                    </label>
+                    <input type="email" name="email" id="email"
+                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         placeholder="name@company.com" required=""/>
                 </div>
-                <div className={"text-center"}>
-                    ログイン画面
+                <div>
+                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Password
+                    </label>
+                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                 </div>
-
-                    <form>
-                        <div className={"flex row-auto mt-4"}>
-                            <div className={"m-1 row-auto"}>
-                                <div className={"mb-1"}>
-                                    <label htmlFor="helper-text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                </div>
-                                <div className={"mb-1"}>
-                                    <label htmlFor="helper-text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                </div>
-
-                            </div>
-
-                            <div className={"m-1 row-auto"}>
-                                <input type={"email"} id="" aria-describedby="helper-text-explanation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-0.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="you@example.com"/>
-                                <input type={"password"} id="helper-text" aria-describedby="helper-text-explanation" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-0.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="********"/>
-                            {/*みないでくださいい^^*/}
-                            </div>
-                            <div className={"m-1 text-right row-auto items-center mt-3"}>
-                                <a className={"cursor-pointer"}>
-                                    <svg className="h-8 w-8 text-blue-500" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                         stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"/>
-                                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"/>
-                                        <path d="M20 12h-13l3 -3m0 6l-3 -3"/>
-                                    </svg>
-                                </a>
-                            </div>
+                <div className="flex items-center justify-between">
+                    <div className="flex items-start">
+                        <div className="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"/>
                         </div>
-                    </form>
+                    <div className="ml-3 text-sm">
+                        <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                    </div>
+                </div>
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                </div>
+                  <button type="submit" className="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Don’t have an account yet?
+                  <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                </p>
+              </form>
             </div>
+          </div>
         </div>
+
+
+
     )
 }
 

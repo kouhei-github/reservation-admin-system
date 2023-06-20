@@ -1,41 +1,89 @@
-// import {HomeIcon} from "@/styles/HomeIcon";
-import {NavigationItem} from "./NavigationItem";
+import {JSX, useState,MouseEvent, } from 'react'
+import {HomeIcon} from "@/styles/HomeIcon";
+import NavigationItem from "./NavigationItem";
+import NavigationChildItem from '@/components/common/NavigationChildItem'
 
+
+type NavigationChild = {
+    // icon: JSX.Element;
+    path: string;
+    pageName: string;
+}
 
 type Navigation = {
-    pageName: string;
+    icon: JSX.Element;
     path: string;
-    // icon: HomeIcon;
+    pageName: string;
+    pageChildren: Array<NavigationChild>;
 }
+
 
 const navigations: Navigation[] = [
     {
-        pageName: "トップ",
+        icon: <HomeIcon className={""}/>,
         path: "/",
-        // icon: <HomeIcon className={styles.icon}/>
+        pageName: "トップ",
+        pageChildren:[]
     },
     {
-        pageName: "ページ2",
+        icon: <HomeIcon className={""}/>,
         path: "/page2",
-        // icon: <HomeIcon className={styles.icon}/>
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
     },
     {
-        pageName: "ページ3",
+        icon: <HomeIcon className={""}/>,
         path: "/page3",
-        // icon: <HomeIcon className={styles.icon}/>
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
     },
     {
-        pageName: "ページ4",
+        icon: <HomeIcon className={""}/>,
         path: "/page4",
-        // icon: <HomeIcon className={styles.icon}/>
-    },
-
+        pageName: "ページ4",
+        pageChildren: []
+    }
 ]
 
 const sideBar = () => {
-    return(
-        <nav className={"bg-[#0051CB"}>
+    const [isOpen, setIsOpen] = useState(false)
+    const toggleDropdown = (event: MouseEvent) => {
+        event.preventDefault()
+        setIsOpen(!isOpen)
+    }
 
+    const hideDropdown = () => {
+        setIsOpen(false)
+    }
+
+
+    return(
+        <nav className={"my-1"}>
+            <div className={"border-b border-amber-50 "}>
+                {navigations.map((navigation, idx) => (
+                    <div key={idx} className={""}>
+                        <div>
+                            <NavigationItem Icon={navigation.icon} href={navigation.path} name={navigation.pageName} />
+                            {navigation.pageChildren.map((pageChild, i) => (
+                                <div key={i} className={""}>
+                                    <ul
+                                        className={"dropdown-item"}
+                                        onClick={hideDropdown}
+                                    >
+                                        <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </nav>
     )
 }
