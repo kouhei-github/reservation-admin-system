@@ -2,9 +2,18 @@ import Header from "@/components/Dashbord/Header";
 import ApplicationForm from '@/components/Form/ApplicationForm'
 import {myFormContext, useMyFormContext} from '@/utils/formContext'
 import SideBarDetox from "@/components/Dashbord/SideBarDetox";
+import UserProfile from "@/components/Dashbord/SideBar/UserProfile";
+
+export type LoginUserProfileType = {
+    name: string,
+    image?: string,
+    isAdmin: boolean
+}
 
 export default function Home() {
   const customCtx = useMyFormContext();
+
+  const user: LoginUserProfileType = { name: "永松光平", image: "/people.jpg", isAdmin: false }
   return (
       <div className={"min-h-screen"}>
           <div className={"flex h-[8vh]"}>
@@ -12,8 +21,13 @@ export default function Home() {
           </div>
 
           <div className={"flex h-[92vh] w-full bg-[rgb(0,81,203)]"}>
-              <div className={"w-1/5 h-full overflow-y-scroll text-white text-center bg-[rgb(0,81,203)]"}>
-                  <SideBarDetox />
+              <div className={"w-1/5 h-full text-white text-center bg-[rgb(0,81,203)]"}>
+                  <div className={"h-[85vh] overflow-y-scroll"}>
+                    <SideBarDetox />
+                  </div>
+                  <div className={"h-[7vh] flex items-center justify-center border-t border-white"}>
+                    <UserProfile name={user.name} image={user.image} />
+                  </div>
               </div>
               <div className={"w-4/5 h-full text-center overflow-y-scroll bg-white rounded-tl-2xl"}>
                 <myFormContext.Provider value={customCtx}>

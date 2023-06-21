@@ -47,10 +47,160 @@ const navigations: NavigationType[] = [
         path: "/page4",
         pageName: "ページ4",
         pageChildren: []
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/",
+        pageName: "トップ",
+        pageChildren: [],
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page2",
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page3",
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page4",
+        pageName: "ページ4",
+        pageChildren: []
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/",
+        pageName: "トップ",
+        pageChildren: [],
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page2",
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page3",
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page4",
+        pageName: "ページ4",
+        pageChildren: []
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/",
+        pageName: "トップ",
+        pageChildren: [],
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page2",
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page3",
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page4",
+        pageName: "ページ4",
+        pageChildren: []
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/",
+        pageName: "トップ",
+        pageChildren: [],
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page2",
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page3",
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page4",
+        pageName: "ページ4",
+        pageChildren: []
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/",
+        pageName: "トップ",
+        pageChildren: [],
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page2",
+        pageName: "ページ2",
+        pageChildren: [
+            {path: "/page2/1",pageName: "page2-1"},
+            {path: "/page2/2",pageName: "page2-2"},
+            {path: "/page2/3",pageName: "page2-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page3",
+        pageName: "ページ3",
+        pageChildren: [
+            {path: "/page3/1",pageName: "page3-1"}
+        ]
+    },
+    {
+        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
+        path: "/page4",
+        pageName: "ページ4",
+        pageChildren: []
     }
 ]
 
-const sideBar = () => {
+const SideBarDetox = () => {
     // アコーディオンを表示させるインデックスを格納
     const [childOpenList, setChildOpenList] = useState<number[]>([])
 
@@ -72,11 +222,12 @@ const sideBar = () => {
         <nav className={"my-1"}>
             <div className={"space-y-10"}>
                 {navigations.map((navigation, idx) => (
-                    <div key={idx} className={"w-full flex flex-col items-center justify-center"} >
+                    <div className={`w-full py-2 ${childOpenList.includes(idx) ? "bg-[rgb(5,55,130)]" : ""}`}>
+                        <div key={idx} className={`w-2/3 mx-auto flex flex-col items-center justify-center`} >
                         {navigation.pageChildren.length == 0 ?
                             (<Navigation icon={navigation.icon} path={navigation.path} pageName={navigation.pageName} />):
                             (
-                                <div className={"flex items-center space-x-2 cursor-pointer"} onClick={() => accordionAction(idx)}>
+                                <div className={`flex w-full items-center space-x-2 cursor-pointer`} onClick={() => accordionAction(idx)}>
                                     <Accordion icon={navigation.icon} pageName={navigation.pageName} />
                                     {!childOpenList.includes(idx) ? (
                                         <svg className={"h-4 w-4 fill-white"} xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
@@ -90,7 +241,7 @@ const sideBar = () => {
                         {navigation.pageChildren.map((pageChild, i) => (
                             <>
                                 {childOpenList.includes(idx) ? (
-                                    <div className={""}>
+                                    <div className={"w-full"}>
                                         <Navigation path={pageChild.path} pageName={pageChild.pageName} />
                                     </div>
                                 ) : (
@@ -99,10 +250,11 @@ const sideBar = () => {
                             </>
                         ))}
                     </div>
+                    </div>
                 ))}
             </div>
         </nav>
     )
 }
 
-export default sideBar
+export default SideBarDetox

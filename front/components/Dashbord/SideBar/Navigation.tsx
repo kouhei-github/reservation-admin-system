@@ -7,13 +7,13 @@ type Props = CustomOmit<NavigationType, "pageChildren" | "icon"> & {icon?: Filte
 const Navigation = (props: Readonly<Props>) => {
 
     return(
-        <Link className={"text-white flex items-center hover:underline hover:underline-offset-2 hover:decoration-white"} href={props.path}>
+        <Link className={"text-white w-full flex items-center hover:underline hover:underline-offset-2 hover:decoration-white"} href={props.path}>
             {typeof props.icon === "undefined" ? (
-                <></>
+                <div className={"w-1/3"} />
             ) : (
-                <>{ props.icon }</>
+                <div className={"w-1/3"}>{ props.icon }</div>
             )}
-            <p>{props.pageName}</p>
+            <p className={"w-2/3  text-left"}>{props.pageName}</p>
         </Link>
     )
 }
