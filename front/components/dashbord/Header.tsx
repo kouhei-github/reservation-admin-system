@@ -47,7 +47,7 @@ const Header = () => {
     return (
         <div className={"bg-[rgb(0,81,203)] text-white w-full flex items-center justify-center"}>
             <div className={"w-1/5 text-center"}>
-                <div className={"font-bold text-2xl"}>ショクハブ</div>
+                <div className={"font-bold text-2xl"}>求人ボックス</div>
             </div>
             <div className={"w-4/5 flex items-center justify-around text-sm mx-8"}>
                 <div className={"w-1/6"} />
