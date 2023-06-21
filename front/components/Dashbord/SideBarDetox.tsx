@@ -21,183 +21,34 @@ const navigations: NavigationType[] = [
     {
         icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
         path: "/",
-        pageName: "トップ",
+        pageName: "コース一覧",
         pageChildren: [],
     },
     {
         icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
+        path: "/reservation",
+        pageName: "予約管理",
         pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
+            {path: "/reservation/confirm",pageName: "予約数確認"},
+            {path: "/reservation/add",pageName: "予約枠追加"},
+            {path: "/reservation/change",pageName: "予約変更"},
         ]
     },
     {
         icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
+        path: "/user",
+        pageName: "ユーザー",
         pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
+            {path: "/user/detail",pageName: "個別詳細ページ"},
+            {path: "/user/chat",pageName: "チャット"},
         ]
     },
     {
         icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
+        path: "/analysis",
+        pageName: "分析",
         pageChildren: []
     },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/",
-        pageName: "トップ",
-        pageChildren: [],
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
-        pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
-        pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
-        pageChildren: []
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/",
-        pageName: "トップ",
-        pageChildren: [],
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
-        pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
-        pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
-        pageChildren: []
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/",
-        pageName: "トップ",
-        pageChildren: [],
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
-        pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
-        pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
-        pageChildren: []
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/",
-        pageName: "トップ",
-        pageChildren: [],
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
-        pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
-        pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
-        pageChildren: []
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/",
-        pageName: "トップ",
-        pageChildren: [],
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page2",
-        pageName: "ページ2",
-        pageChildren: [
-            {path: "/page2/1",pageName: "page2-1"},
-            {path: "/page2/2",pageName: "page2-2"},
-            {path: "/page2/3",pageName: "page2-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page3",
-        pageName: "ページ3",
-        pageChildren: [
-            {path: "/page3/1",pageName: "page3-1"}
-        ]
-    },
-    {
-        icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/page4",
-        pageName: "ページ4",
-        pageChildren: []
-    }
 ]
 
 const SideBarDetox = () => {
@@ -237,18 +88,20 @@ const SideBarDetox = () => {
                                 </div>
                             )
                         }
+                        <div className={"w-full"}>
+                            {navigation.pageChildren.map((pageChild, i) => (
+                                <div className={"my-4"}>
+                                    {childOpenList.includes(idx) ? (
+                                        <div className={"w-full"}>
+                                            <Navigation path={pageChild.path} pageName={pageChild.pageName} />
+                                        </div>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
 
-                        {navigation.pageChildren.map((pageChild, i) => (
-                            <>
-                                {childOpenList.includes(idx) ? (
-                                    <div className={"w-full"}>
-                                        <Navigation path={pageChild.path} pageName={pageChild.pageName} />
-                                    </div>
-                                ) : (
-                                    <></>
-                                )}
-                            </>
-                        ))}
                     </div>
                     </div>
                 ))}

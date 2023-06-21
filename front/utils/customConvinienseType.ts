@@ -15,7 +15,7 @@
  *
  * Filter<Job, "contents">[0]  // content => [0]とすることでcontent[]ではなくcontentが取得できる
  */
-export type Filter<T, K extends keyof T> = T extends { [P in K]: infer C } ? C : never
+export type Filter<T, K extends keyof T> = CustomRequired<T> extends { [P in K]: infer C } ? C : never
 
 
 /**

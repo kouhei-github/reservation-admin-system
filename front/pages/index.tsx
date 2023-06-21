@@ -26,7 +26,7 @@ export default function Home() {
                     <SideBarDetox />
                   </div>
                   <div className={"h-[7vh] flex items-center justify-center border-t border-white"}>
-                    <UserProfile name={user.name} image={user.image} />
+                    <UserProfile name={user.name} image={typeof user.image === "undefined" ? "" : user.image} />
                   </div>
               </div>
               <div className={"w-4/5 h-full text-center overflow-y-scroll bg-white rounded-tl-2xl"}>
