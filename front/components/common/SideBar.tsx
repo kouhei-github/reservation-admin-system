@@ -1,7 +1,9 @@
-import {JSX, useState,MouseEvent, } from 'react'
-import {HomeIcon} from "@/styles/HomeIcon";
-import NavigationItem from "./NavigationItem";
-import NavigationChildItem from '@/components/common/NavigationChildItem'
+import {useState, Dispatch, SetStateAction} from 'react'
+import {HomeIcon} from "../../styles/HomeIcon";
+import NavigationLinkItem from "./NavigationLinkItem";
+import NavigationChildItem from './NavigationChildItem';
+import NavigationItem from './NavigationItem';
+
 
 
 type NavigationChild = {
@@ -17,13 +19,12 @@ type Navigation = {
     pageChildren: Array<NavigationChild>;
 }
 
-
 const navigations: Navigation[] = [
     {
         icon: <HomeIcon className={""}/>,
         path: "/",
         pageName: "トップ",
-        pageChildren:[]
+        pageChildren: [],
     },
     {
         icon: <HomeIcon className={""}/>,
@@ -52,31 +53,29 @@ const navigations: Navigation[] = [
 ]
 
 const sideBar = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const toggleDropdown = (event: MouseEvent) => {
-        event.preventDefault()
-        setIsOpen(!isOpen)
-    }
-
-    const hideDropdown = () => {
-        setIsOpen(false)
-    }
-
+    const [isPageState1, setIsPageState1] = useState(false);
+    const [isPageState2, setIsPageState2] = useState(false);
+    const [isPageState3, setIsPageState3] = useState(false);
+    const [isPageState4, setIsPageState4] = useState(false);
+    const pageStates = [
+        {state: isPageState1, setState: setIsPageState1},
+        {state: isPageState2, setState: setIsPageState2},
+        {state: isPageState3, setState: setIsPageState3},
+        {state: isPageState4, setState: setIsPageState4},
+    ];
 
     return(
         <nav className={"my-1"}>
             <div className={"border-b border-amber-50 "}>
                 {navigations.map((navigation, idx) => (
-                    <div key={idx} className={""}>
-                        <NavigationItem Icon={navigation.icon} href={navigation.path} name={navigation.pageName} />
+                    <div key={idx} className={""} >
+                        {navigation.pageChildren.length == 0 ?
+                            (<NavigationLinkItem icon={navigation.icon} href={navigation.path} name={navigation.pageName} func={() => pageStates[idx].setState(pageStates[idx].state)}/>):
+                            (<NavigationItem icon={navigation.icon} name={navigation.pageName} />)
+                        }
                         {navigation.pageChildren.map((pageChild, i) => (
-                            <div key={i} className={""}>
-                                <ul
-                                    className={"dropdown-item"}
-                                    onClick={hideDropdown}
-                                >
-                                    <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
-                                </ul>
+                            <div key={i} className={pageStates[idx].state ? "overflow-visible" : "overflow-hidden"}>
+                                <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
                             </div>
                         ))}
                     </div>

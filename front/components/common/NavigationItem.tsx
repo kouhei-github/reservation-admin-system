@@ -1,23 +1,20 @@
-import {JSX} from 'react'
+import React, {useState, SetStateAction, Dispatch} from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 type Props = {
-    Icon: JSX.Element;
-    href: string;
+    icon: JSX.Element;
     name: string;
 }
 
-const NavigationItem = ({Icon, href, name}: Props) => {
+
+const NavigationItem = ({icon, name}: Props) => {
     const router = useRouter();
     return (
-        <Link
-            href={href}
-            className={`${router.pathname == href ? "": ""}`}
-        >
-            <div>{Icon}</div>
+        <div>
+            {icon}
             <p>{name}</p>
-        </Link>
+        </div>
     )
 }
 
