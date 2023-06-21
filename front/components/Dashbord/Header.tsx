@@ -1,7 +1,7 @@
 import {PickItUp} from "@/utils/customConvinienseType";
 import {ChangeEvent, useState} from "react";
 import {useRouter} from "next/router";
-import BoundBox from "@/components/animation/BoundBox";
+import BoundBox from "@/components/Animation/BoundBox";
 
 // メニューの型
 type menu = {

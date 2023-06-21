@@ -64,6 +64,8 @@ const sideBar = () => {
         {state: isPageState4, setState: setIsPageState4},
     ];
 
+    const childOpenList: number[] = []
+
     return(
         <nav className={"my-1"}>
             <div className={"border-b border-amber-50 "}>
@@ -73,11 +75,13 @@ const sideBar = () => {
                             (<NavigationLinkItem icon={navigation.icon} href={navigation.path} name={navigation.pageName} func={() => pageStates[idx].setState(pageStates[idx].state)}/>):
                             (<NavigationItem icon={navigation.icon} name={navigation.pageName} />)
                         }
-                        {navigation.pageChildren.map((pageChild, i) => (
+
+                       {navigation.pageChildren.map((pageChild, i) => (
                             <div key={i} className={pageStates[idx].state ? "overflow-visible" : "overflow-hidden"}>
                                 <NavigationChildItem href={pageChild.path} name={pageChild.pageName} />
                             </div>
                         ))}
+
                     </div>
                 ))}
             </div>

@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google'
 
 // const inter = Inter({ subsets: ['latin'] })
 
-import LoginBox from "@/components/auth/LoginBox";
-import Header from "@/components/dashbord/Header";
+import LoginBox from "@/components/Auth/LoginBox";
+import Header from "@/components/Dashbord/Header";
 
 export default function login() {
     return (
