@@ -34,7 +34,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className={"w-4/5 h-full overflow-y-scroll bg-white rounded-tl-2xl"}>
-                    <div className={"w-[90%] mx-auto"}>
+                    <div className={"w-[95%] mx-auto"}>
                         <div className={"text-end mt-10"}>
                             <NewCreateButton />
                         </div>

@@ -13,7 +13,7 @@ const TableHeader = (props: {headerColumn:headerColumn}) => {
         <thead className={"bg-blue-50 dark:bg-neutral-600"}>
             <tr>
                 {headerColumn.map((column, idx) => (
-                    <th key={idx} scope="col" className= {column.width + " px-6 py-3 text-center text-xs font-medium text-white uppercase truncate"}>
+                    <th key={idx} scope="col" className= {column.width + " px-2 py-3 text-center text-xs font-medium text-white uppercase"}>
                         <div className={"flex mx-auto justify-center items-center"}>
                             <p className={"pr-2"}>{column.text}</p>
                             {typeof column.icon !== "undefined" && 
