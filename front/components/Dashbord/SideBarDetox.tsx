@@ -36,10 +36,10 @@ const navigations: NavigationType[] = [
     },
     {
         icon: <HomeIcon className={"h-4 w-4 fill-white"}/>,
-        path: "/user",
+        path: "",
         pageName: "ユーザー",
         pageChildren: [
-            {path: "/user/detail",pageName: "個別詳細ページ"},
+            {path: "/user",pageName: "顧客情報一覧"},
             {path: "/user/chat",pageName: "チャット"},
         ]
     },
