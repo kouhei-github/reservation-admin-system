@@ -3,6 +3,7 @@ import ConsumerTableHeader from "@/components/Common/ConsumerTableHeader";
 import SettingIcon from "@/styles/SettingIcon";
 import {PickItUp} from "@/utils/customConvinienseType";
 import PageNation from "@/components/Common/PageNation";
+import {pageNationCtx, usePageNationCtx} from "@/utils/pageNationContext";
 
 const UserList = () => {
 
@@ -60,15 +61,18 @@ const UserList = () => {
             {text: "aa", icon: <div className={"w-1/3 mx-auto bg-pink-500 hover:bg-white py-1 cursor-pointer fill-white hover:fill-pink-500 hover:border hover:border-pink-500"}><SettingIcon className={"w-5 h-5"} /></div>, center: true},
         ]
     ]
-
-
+    
+    const pageNationContext = usePageNationCtx()
+    
     return (
         <div className={"w-full"}>
             <h3 className={"text-left text-2xl font-bold underline underline-offset-4 decoration-green-500 bg-white w-max px-3 py-1"}>ユーザー管理</h3>
             
             <div className={"mt-16"}>
                 <div className={"my-6 w-full flex justify-end"}>
-                    <PageNation />
+                    <pageNationCtx.Provider value={pageNationContext}>
+                        <PageNation />
+                    </pageNationCtx.Provider>
                 </div>
 
                 <div className={"w-[1100px] mx-auto overflow-x-scroll flex flex-col bg-white shadow-xl px-8 py-5 rounded-xl"}>
@@ -77,7 +81,9 @@ const UserList = () => {
                 </div>
 
                 <div className={"my-6 flex items-center justify-end"}>
-                    <PageNation />
+                    <pageNationCtx.Provider value={pageNationContext}>
+                        <PageNation />
+                    </pageNationCtx.Provider>
                 </div>
             </div>
 

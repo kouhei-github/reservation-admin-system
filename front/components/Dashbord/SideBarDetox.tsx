@@ -73,7 +73,7 @@ const SideBarDetox = () => {
         <nav className={"my-1"}>
             <div className={"space-y-10"}>
                 {navigations.map((navigation, idx) => (
-                    <div className={`w-full py-2 ${childOpenList.includes(idx) ? "bg-[rgb(5,55,130)]" : ""}`}>
+                    <div key={idx} className={`w-full py-2 ${childOpenList.includes(idx) ? "bg-[rgb(5,55,130)]" : ""}`}>
                         <div key={idx} className={`w-2/3 mx-auto flex flex-col items-center justify-center`} >
                         {navigation.pageChildren.length == 0 ?
                             (<Navigation icon={navigation.icon} path={navigation.path} pageName={navigation.pageName} />):
@@ -90,7 +90,7 @@ const SideBarDetox = () => {
                         }
                         <div className={"w-full"}>
                             {navigation.pageChildren.map((pageChild, i) => (
-                                <div className={"my-4"}>
+                                <div key={i} className={"my-4"}>
                                     {childOpenList.includes(idx) ? (
                                         <div className={"w-full"}>
                                             <Navigation path={pageChild.path} pageName={pageChild.pageName} />
