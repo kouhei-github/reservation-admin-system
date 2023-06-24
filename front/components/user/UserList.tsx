@@ -4,6 +4,7 @@ import SettingIcon from "@/styles/SettingIcon";
 import {PickItUp} from "@/utils/customConvinienseType";
 import PageNation from "@/components/Common/PageNation";
 import {pageNationCtx, usePageNationCtx} from "@/utils/pageNationContext";
+import SearchBox from "@/components/Common/SearchBox";
 
 const UserList = () => {
 
@@ -64,12 +65,15 @@ const UserList = () => {
     
     const pageNationContext = usePageNationCtx()
     
+    
     return (
         <div className={"w-full"}>
-            <h3 className={"text-left text-2xl font-bold underline underline-offset-4 decoration-green-500 bg-white w-max px-3 py-1"}>ユーザー管理</h3>
+            <h3 className={"text-left text-2xl font-bold bg-white w-max px-3 py-1"}>ユーザー管理</h3>
             
             <div className={"mt-16"}>
-                <div className={"my-6 w-full flex justify-end"}>
+                <div className={"my-6 w-11/12 mx-auto flex items-center justify-between"}>
+                    <SearchBox />
+
                     <pageNationCtx.Provider value={pageNationContext}>
                         <PageNation />
                     </pageNationCtx.Provider>
@@ -80,7 +84,7 @@ const UserList = () => {
                     <ConsumerTable bodyBaseColumnArray={body} />
                 </div>
 
-                <div className={"my-6 flex items-center justify-end"}>
+                <div className={"my-6 w-11/12 mx-auto flex items-center justify-end"}>
                     <pageNationCtx.Provider value={pageNationContext}>
                         <PageNation />
                     </pageNationCtx.Provider>
