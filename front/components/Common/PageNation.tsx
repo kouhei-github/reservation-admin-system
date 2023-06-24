@@ -24,7 +24,7 @@ const PageNation = () => {
         const steps = []
         if (next){
             pageNationStep.setCurrentStep(pageNationStep.currentStep + 5)
-            for (let i = pageNationStep.currentStep; i < pageNationStep.currentStep + 6; i++) {
+            for (let i = pageNationStep.currentStep+1; i < pageNationStep.currentStep + 6; i++) {
                 if(i <= 0)continue
                 steps.push(i)
             }
