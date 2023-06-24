@@ -41,8 +41,8 @@ const ApplicationForm= () => {
   }
 
   return (
-      <div className={'md:pb-0 pb-10'}>
-        <form className={"md:px-[10%] px-0 mx-auto md:pb-0 pb-6 md:my-10 mt-8"}>
+    <div className={' bg-white w-11/12 mx-auto my-10'}>
+        <form className={"md:px-[10%] px-0 mx-auto py-7"}>
           <div className={currentPage === 1 ? "inline-block w-full space-y-8" : "hidden"}>
             <div className=''>
               <div className='flex font-bold items-center mb-1'>

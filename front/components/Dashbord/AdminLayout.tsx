@@ -12,7 +12,7 @@ export type LoginUserProfileType = {
 export default function AdminLayout(props: {children: React.ReactNode}) {
     const user: LoginUserProfileType = { name: "永松光平", image: "/people.jpg", isAdmin: false }
     return (
-        <div className={"min-h-screen"}>
+        <div className={"min-h-screen bg-[rgb(229,229,229)]"}>
             <div className={"flex h-[8vh]"}>
                 <Header />
             </div>
@@ -26,7 +26,7 @@ export default function AdminLayout(props: {children: React.ReactNode}) {
                         <UserProfile name={user.name} image={typeof user.image === "undefined" ? "" : user.image} />
                     </div>
                 </div>
-                <div className={"w-4/5 h-full text-center overflow-y-scroll bg-white rounded-tl-2xl"}>
+                <div className={"w-4/5 h-full text-center overflow-y-scroll bg-[rgb(229,229,229)] rounded-tl-2xl"}>
                     {props.children}
                 </div>
             </div>

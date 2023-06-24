@@ -64,14 +64,23 @@ const UserList = () => {
 
     return (
         <div className={"w-full"}>
-            <h3 className={" text-left text-2xl font-bold underline underline-offset-4 decoration-green-500"}>ユーザー管理</h3>
-            <div className={"my-6 flex items-center justify-end"}>
-                <PageNation />
+            <h3 className={"text-left text-2xl font-bold underline underline-offset-4 decoration-green-500 bg-white w-max px-3 py-1"}>ユーザー管理</h3>
+            
+            <div className={"mt-16"}>
+                <div className={"my-6 w-full flex justify-end"}>
+                    <PageNation />
+                </div>
+
+                <div className={"w-[1100px] mx-auto overflow-x-scroll flex flex-col bg-white shadow-xl px-8 py-5 rounded-xl"}>
+                    <ConsumerTableHeader columns={header} />
+                    <ConsumerTable bodyBaseColumnArray={body} />
+                </div>
+
+                <div className={"my-6 flex items-center justify-end"}>
+                    <PageNation />
+                </div>
             </div>
-            <div className={"w-[1100px] mx-auto overflow-x-scroll flex flex-col "}>
-                <ConsumerTableHeader columns={header} />
-                <ConsumerTable bodyBaseColumnArray={body} />
-            </div>
+
         </div>
 
     )
