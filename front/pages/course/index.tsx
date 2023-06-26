@@ -3,7 +3,7 @@ import ApplicationForm from '@/components/Form/ApplicationForm'
 import {myFormContext, useMyFormContext} from '@/utils/formContext'
 import SideBarDetox from "@/components/Dashbord/SideBarDetox";
 import UserProfile from "@/components/Dashbord/SideBar/UserProfile";
-import CourceList from "@/components/List/CourceList";
+import CourseList from "@/components/List/CourseList";
 import NewCreateButton from "@/components/Button/NewCreateButton";
 import AdminLayout from "@/components/Dashbord/AdminLayout";
 
@@ -26,7 +26,7 @@ export default function Home() {
                     <NewCreateButton />
                 </div>
                 <div className={"mt-3"}>
-                    <CourceList />
+                    <CourseList />
                 </div>
             </div>
         </AdminLayout>

@@ -10,7 +10,7 @@ export type headerColumn = Array<CustomOmit<headerColumnBase, "icon">  & {icon?:
 const TableHeader = (props: {headerColumn:headerColumn}) => {
     const {headerColumn} = props
     return(
-        <thead className={"bg-blue-50 dark:bg-neutral-600"}>
+        <thead className={"bg-neutral-600"}>
             <tr>
                 {headerColumn.map((column, idx) => (
                     <th key={idx} scope="col" className= {column.width + " px-2 py-3 text-center text-xs font-medium text-white uppercase"}>

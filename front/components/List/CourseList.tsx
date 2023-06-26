@@ -5,18 +5,24 @@ import StatusActiveIcon from "@/styles/StatusActiveIcon";
 import StatusStopIcon from "@/styles/StatusStopIcon";
 import Link from "next/link";
 
-const CourceList = () => {
+const CourseList = () => {
+
+
+    const query = {
+        id: 1,
+        name: "test",
+    };
     
     const header: headerColumn= [
         {width: "w-[10%]", text: "媒体", icon: <SortIcon />},
-        {width: "w-[15%]", text: "コース名", icon: <SortIcon />},
+        {width: "w-[13%]", text: "コース名", icon: <SortIcon />},
         {width: "w-[13%]", text: "ステータス", icon: <SortIcon />},
         {width: "w-[10%]", text: "ネット予約"},
         {width: "w-[10%]", text: "金額"},
         {width: "w-[10%]", text: "人数"},
         {width: "w-[10%]", text: "滞在時間"},
         {width: "w-[10%]", text: "作成日"},
-        {width: "w-[7%]", text: "" },
+        {width: "w-[8%]", text: "" },
     ]
 
     const body: bodyColumn=[
@@ -29,7 +35,7 @@ const CourceList = () => {
             {text: "1～8名"},
             {text: "2時間"},
             {text: "02/01"},
-            {text: "編集", element: <Link className={"text-blue-600 hover:text-blue-800"} href="#">編集</Link>},
+            {text: "編集", element: <Link className={"text-blue-600 hover:text-blue-800"} href={{ pathname: "course/edit", query: query }}>編集</Link>},
         ],
         [
             {text: "食べログ"},
@@ -56,6 +62,7 @@ const CourceList = () => {
     ]
 
 
+
     return (
         <table className={"border border-slate-500 text-2xl text-center table-fixed w-full"}>
             <TableHeader headerColumn={header} />
@@ -64,4 +71,4 @@ const CourceList = () => {
     )
 }
 
-export default CourceList
+export default CourseList
