@@ -11,6 +11,16 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
+    const dayOfWeek = [
+        {value: "日", prop: "availableSun"},
+        {value: "月", prop: "availableMon"},
+        {value: "火", prop: "availableTue"},
+        {value: "水", prop: "availableWed"},
+        {value: "木", prop: "availableThu"},
+        {value: "金", prop: "availableFri"},
+        {value: "土", prop: "availableSat"},
+    ]
+
     const validate = () => {
         if(customCtx.form.title === "") {
             alert("コース名を入力してください")
@@ -28,6 +38,9 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
         console.log(customCtx.form)
     }
 
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className={'bg-white w-11/12 mx-auto my-10'}>
             <div className={"bg-blue-700 text-white font-bold w-full mx-auto mt-10 py-2 text-left text-xl"}>
@@ -289,56 +302,56 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableSun"}
                                 />
                                 <div className={"pl-2"}>日</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableMon"}
                                 />
                                 <div className={"pl-2"}>月</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableTue"}
                                 />
                                 <div className={"pl-2"}>火</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableWed"}
                                 />
                                 <div className={"pl-2"}>水</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableThu"}
                                 />
                                 <div className={"pl-2"}>木</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableFri"}
                                 />
                                 <div className={"pl-2"}>金</div>
                             </div>
                             <div className={"w-[14%] flex"}>
                                 <CheckBox
                                     type={"checkbox"}
-                                    inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableDay"}
+                                    inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
+                                    property={"availableSat"}
                                 />
                                 <div className={"pl-2"}>土</div>
                             </div>
@@ -428,10 +441,10 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
 
             <div className={"flex gap-10 justify-center pb-5"}>
                 <div className={'w-1/3'}>
-                    <div className={"w-full py-3 bg-gray-500 text-white cursor-pointer"} onClick={() => validate()}>削除</div>
+                    <div className={"w-full py-3 bg-gray-500 hover:bg-gray-600 text-white cursor-pointer"} onClick={() => validate()}>削除</div>
                 </div>
                 <div className={'w-1/3'}>
-                    <div className={"w-full py-3 bg-red-500 text-white cursor-pointer"} onClick={() => validate()}>この内容で更新する</div>
+                    <div className={"w-full py-3 bg-red-500 hover:bg-red-600 text-white cursor-pointer"} onClick={() => validate()}>この内容で更新する</div>
                 </div>
             </div>
         </div>

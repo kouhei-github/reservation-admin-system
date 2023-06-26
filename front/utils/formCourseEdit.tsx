@@ -31,8 +31,8 @@ export type SendServerData = {
     content: string;
     // 飲み放題
     drinkCourse: string;
-    drinkCourseOver3h: string,
-    drinkCourseOnly: string,
+    drinkCourseOver3h: string;
+    drinkCourseOnly: string;
     // 食べ放題
     eatCourse: string;
     // TODO 予約時の質問事項
@@ -43,14 +43,20 @@ export type SendServerData = {
     cancelPolicy: string;
     // お客様の滞在時間
     stayTime: string;
-    // 利用可能人数 [制限するかしないか. 最小, 最大]
+    // 利用可能人数
     availablePeople: string;
     availablePeopleMin: string;
     availablePeopleMax: string;
-    // 予約可能曜日 1:(日), 2:(月), 3:(火)...
+    // 予約可能曜日
     availableDate: string;
-    availableDay: string;
-    // 利用可能時間 [制限するかしないか, 当日 or 1日前... , リミット時間]
+    availableSun: string;
+    availableMon: string;
+    availableTue: string;
+    availableWed: string;
+    availableThu: string;
+    availableFri: string;
+    availableSat: string;
+    // 利用可能時間
     reserveAcceptTime: string;
     reserveAcceptDeadlineDay: string;
     reserveAcceptDeadTime: string;
@@ -109,7 +115,13 @@ const defaultValue: MyFormContext = {
         availablePeopleMin: "",
         availablePeopleMax: "",
         availableDate: "",
-        availableDay: "",
+        availableSun: "",
+        availableMon: "",
+        availableTue: "",
+        availableWed: "",
+        availableThu: "",
+        availableFri: "",
+        availableSat: "",
         reserveAcceptTime: "",
         reserveAcceptDeadlineDay: "",
         reserveAcceptDeadTime: "",
