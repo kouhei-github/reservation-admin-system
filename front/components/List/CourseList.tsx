@@ -9,7 +9,7 @@ const CourseList = () => {
 
 
     const query = {
-        id: 1,
+        id: 999999,
         name: "test",
     };
     
