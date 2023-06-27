@@ -5,18 +5,16 @@ import { Inter } from 'next/font/google'
 
 import LoginBox from "@/components/Auth/LoginBox";
 import Header from "@/components/Dashbord/Header";
+import AdminLayout from "@/components/Dashbord/AdminLayout";
 
 export default function login() {
     return (
 
-        <>
-            {/*<div className={"flex h-[8vh]"}>*/}
-            {/*    <Header />*/}
-            {/*</div>*/}
-                <div className={"h-screen w-screen flex justify-center items-center"}>
+        <AdminLayout>
+                <div className={"flex justify-center items-center"}>
                     <LoginBox/>
                 </div>
-        </>
+        </AdminLayout>
 
     )
 }
