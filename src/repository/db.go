@@ -3,7 +3,7 @@ package repository
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"reservation/config"
+	"net-http/myapp/config"
 )
 
 var db *gorm.DB
@@ -20,5 +20,6 @@ func init() {
 	}
 	db.AutoMigrate(
 		&BlogEntity{},
+		&SpreadSheetEntity{},
 	)
 }
