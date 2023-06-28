@@ -11,7 +11,7 @@ export type bodyColumn = Array<Array<CustomOmit<bodyBaseColumn, "element">  & {e
 const TableBody = (props: {bodyRow:bodyColumn}) => {
     const {bodyRow} = props
     return(
-        <tbody className={"divide-y divide-slate-200 dark:divide-slate-700"}>
+        <tbody className={"divide-y divide-slate-200 dark:divide-slate-700 bg-white"}>
             {bodyRow.map((row, r) => (
                 <tr key={r} className={"hover:bg-blue-100 dark:hover:bg-slate-200"}>
                     {row.map((column, c) => (

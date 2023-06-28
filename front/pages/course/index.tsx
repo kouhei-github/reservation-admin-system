@@ -15,10 +15,7 @@ export type LoginUserProfileType = {
 
 
 
-export default function Home() {
-    const customCtx = useMyFormContext();
-
-    const user: LoginUserProfileType = { name: "永松光平", image: "/people.jpg", isAdmin: false }
+export default function Course() {
     return (
         <AdminLayout>
             <div className={"w-[95%] mx-auto"}>
