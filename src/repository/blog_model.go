@@ -2,7 +2,7 @@ package repository
 
 import (
 	"gorm.io/gorm"
-	"reservation/service"
+	"net-http/myapp/service"
 
 	"unicode/utf8"
 )
