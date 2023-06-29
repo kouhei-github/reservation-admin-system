@@ -35,18 +35,18 @@ services:
     ports:
       - "3306:3306"
 
-#  nextjs:
-#    container_name: reservation-system-nextjs
-#    build:
-#      context: .
-#      dockerfile: ./docker/node/Dockerfile
-#    image: reservation-system-nextjs:1.0
-#    tty: true
-#    volumes:
-#      - ./front:/var/www/application
-#    ports:
-#      - ${NODE_PORT}
-#    command: ${NODE_COMMAND}
+  nextjs:
+    container_name: reservation-system-nextjs
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    image: reservation-system-nextjs:1.0
+    tty: true
+    volumes:
+      - ./front:/var/www/application
+    ports:
+      - ${NODE_PORT}
+    command: ${NODE_COMMAND}
 
 #  https-portal:
 #    image: steveltn/https-portal:1
