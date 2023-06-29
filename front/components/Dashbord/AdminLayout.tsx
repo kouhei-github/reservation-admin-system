@@ -2,7 +2,7 @@ import Header from "@/components/Dashbord/Header";
 import SideBarDetox from "@/components/Dashbord/SideBarDetox";
 import UserProfile from "@/components/Dashbord/SideBar/UserProfile";
 import React from "react";
-
+import { useSession} from "next-auth/react"
 export type LoginUserProfileType = {
     name: string,
     image?: string,
@@ -10,7 +10,8 @@ export type LoginUserProfileType = {
 }
 
 export default function AdminLayout(props: {children: React.ReactNode}) {
-    const user: LoginUserProfileType = { name: "永松光平", image: "/people.jpg", isAdmin: false }
+    const session = useSession();
+    const user: LoginUserProfileType = { name: String(session.data?.user?.email), image: "/people.jpg", isAdmin: false }
     return (
         <div className={"min-h-screen bg-[rgb(229,229,229)]"}>
             <div className={"flex h-[8vh]"}>
@@ -23,7 +24,7 @@ export default function AdminLayout(props: {children: React.ReactNode}) {
                         <SideBarDetox />
                     </div>
                     <div className={"h-[7vh] flex items-center justify-center border-t border-white"}>
-                        <UserProfile name={user.name} image={typeof user.image === "undefined" ? "" : user.image} />
+                        <UserProfile name={user.name === "undefined" ? "no Login" : user.name} image={typeof user.image === "undefined" ? "" : user.image} />
                     </div>
                 </div>
                 <div className={"w-4/5 h-full text-center overflow-y-scroll bg-[rgb(229,229,229)] rounded-tl-2xl"}>

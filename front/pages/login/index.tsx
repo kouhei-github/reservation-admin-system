@@ -11,9 +11,7 @@ export default function login() {
     return (
 
         <AdminLayout>
-                <div className={"flex justify-center items-center"}>
                     <LoginBox/>
-                </div>
         </AdminLayout>
 
     )
