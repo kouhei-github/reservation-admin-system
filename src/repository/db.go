@@ -4,6 +4,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"net-http/myapp/config"
+	"net-http/myapp/domain/model/user"
 )
 
 var db *gorm.DB
@@ -19,7 +20,6 @@ func init() {
 		panic("failed to connect database")
 	}
 	db.AutoMigrate(
-		&BlogEntity{},
-		&SpreadSheetEntity{},
+		&user.AdminUser{},
 	)
 }

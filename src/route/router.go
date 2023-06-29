@@ -2,7 +2,9 @@ package route
 
 import (
 	"net-http/myapp/controller"
-	"net-http/myapp/controller/spread"
+	"net-http/myapp/controller/auth_handle"
+	"net-http/myapp/repository"
+	"net-http/myapp/usecase/auth_usecase"
 	"net/http"
 )
 
@@ -12,14 +14,9 @@ func GetRouter() *http.ServeMux {
 	mux.HandleFunc("/", controller.Handler)
 	mux.HandleFunc("/two", controller.HandlerTwo)
 
-	// ブログ
-	mux.HandleFunc("/blog", controller.FindByTitleHandler)
-	mux.HandleFunc("/blog-post", controller.CreateBlogHandler)
-
-	// Google SpreadSheet
-	mux.HandleFunc("/spread/create", spread.CreateHandler)
-	mux.HandleFunc("/spread/get/all", spread.FindByAllHandler)
-	mux.HandleFunc("/spread/get", spread.FindBySheetName)
+	// ユーザー登録
+	signup := auth_handle.NewSignupHandler(&auth_usecase.Signup{AdminUserRepo: &repository.Administer{}})
+	mux.HandleFunc("/api/v1/signup", signup.SignupHandler)
 
 	return mux
 }

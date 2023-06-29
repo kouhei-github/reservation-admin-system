@@ -43,3 +43,7 @@ $ docker compose up -d
 # 停止方法
 $ docker compose down
 ```
+
+
+## バックエンドのアーキテクチャ
+[【Go】レイアードアーキテクチャーによる構成案を考えてみた](https://zenn.dev/yuki_tu/articles/f7636df51eef0a)

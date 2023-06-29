@@ -1,4 +1,4 @@
-package service
+package utils
 
 //type error interface {
 //	Error() string
