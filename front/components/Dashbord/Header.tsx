@@ -2,6 +2,7 @@ import {PickItUp} from "@/utils/customConvinienseType";
 import {ChangeEvent, useState} from "react";
 import {useRouter} from "next/router";
 import BoundBox from "@/components/Animation/BoundBox";
+import { useSession} from "next-auth/react"
 
 // メニューの型
 type menu = {
@@ -12,8 +13,20 @@ type menu = {
 // 予約数用の用の型
 type reservation = PickItUp<menu, "name">  & {value: number}
 const Header = () => {
+    // session
+    const session = useSession();
     // メニュー
-    const menus: menu[] = [{name: "ログアウト", path: "/logout"}, {name: "ユーザー追加", path: "/register"}]
+    let menus: menu[] = [{name: "ログイン", path: "/login"}, {name: "ユーザー追加", path: "/register"}]
+    let UserName:String = ""
+
+    if (session["status"] != "unauthenticated") {
+        menus = [{name: "ログアウト", path: "/login"}]
+        UserName = String(session.data?.user?.email)
+    }
+    
+
+
+    
 
     // メニューを選択した時のページ遷移の情報を持たせる
     const [path, setPath] = useState<string>("選択してください")
@@ -51,7 +64,7 @@ const Header = () => {
             </div>
             <div className={"w-4/5 flex items-center justify-around text-sm mx-8"}>
                 <div className={"w-1/6"} />
-                <div className={"text-white font-bold"}>UserName</div>
+                <div className={"text-white font-bold"}>{UserName}</div>
                 <div className={"w-[110px] space-y-1"}>
                     <h3 className={"text-center"}>進捗</h3>
                     <div className={" border border-white"}>
