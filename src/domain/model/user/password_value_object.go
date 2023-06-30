@@ -11,7 +11,7 @@ type Password struct {
 	value string
 }
 
-// パスワードオブジェクト作成
+// NewPasswrod パスワードオブジェクト作成
 // ハッシュ化されてない値を扱う
 // コンストラクタ
 //
@@ -26,7 +26,7 @@ func NewPasswrod(pwd string) (*Password, error) {
 	return &Password{value: pwd}, nil
 }
 
-// ハッシュ化されたパスワードと一致するか
+// IsMatch ハッシュ化されたパスワードと一致するか
 // @params
 // hashPwd ハッシュ化されたパスワード
 func (pwd *Password) IsMatch(hashPwd string) (bool, error) {
@@ -37,7 +37,7 @@ func (pwd *Password) IsMatch(hashPwd string) (bool, error) {
 	return true, err
 }
 
-// ハッシュ化したパスアードを返却
+// CreateHash ハッシュ化したパスアードを返却
 func (pwd *Password) CreateHash() (string, error) {
 	pw, err := bcrypt.GenerateFromPassword([]byte(pwd.value), bcrypt.DefaultCost)
 	return string(pw), err

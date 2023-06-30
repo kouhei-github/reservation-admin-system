@@ -5,12 +5,12 @@ import (
 	"strings"
 )
 
-// パスワードオブジェクト
+// Email パスワードオブジェクト
 type Email struct {
 	value string
 }
 
-// パスワードオブジェクト作成
+// NewEmail パスワードオブジェクト作成
 // ハッシュ化されてない値を扱う
 // コンストラクタ
 //

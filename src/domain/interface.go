@@ -8,3 +8,8 @@ type AdminUserRepository interface {
 	SaveAdminUser(user *user.AdminUser) error
 	FindAdminUserByEmail(email string) (*user.AdminUser, error)
 }
+
+type AuthJwtToken interface {
+	CreateJwtToken(serId uint) (string, error)
+	AuthorizationProcess(tokenString string) (float64, error)
+}
