@@ -7,6 +7,7 @@ import (
 	"net-http/myapp/repository/auth_infra"
 	"net-http/myapp/usecase/auth_usecase"
 	"net/http"
+	"time"
 )
 
 type Router struct {
@@ -27,7 +28,7 @@ func (router *Router) GetRouter() {
 	signin := auth_handle.NewSigninHandler(
 		&auth_usecase.Signin{
 			AdminUserRepo: &repository.Administer{},
-			JwtRepo:       &auth_infra.JwtToken{},
+			JwtRepo:       &auth_infra.JwtToken{Exp: time.Now().Add(time.Hour * 6).Unix()},
 		},
 	)
 	router.Mutex.HandleFunc("/api/v1/login", signin.SigninHandler)

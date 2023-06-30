@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type ResponseBody struct {
+type responseBody struct {
 	AccessToken string `json:"accessToken" binding:"required"`
 }
 
@@ -56,7 +56,7 @@ func (ru *SingninHandle) SigninHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := ResponseBody{AccessToken: token}
+	response := responseBody{AccessToken: token}
 	json.NewEncoder(w).Encode(response)
 	utils.WriteLogFile("完了しました")
 }

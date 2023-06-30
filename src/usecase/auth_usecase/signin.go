@@ -37,8 +37,9 @@ func (s *Signin) Signin(email string, password string) (string, error) {
 	if !isMatch {
 		return "", utils.MyError{Message: "パスワードが正しくありません"}
 	}
+
 	// JWT-Tokenの作成
-	newJwtToken, err := s.JwtRepo.CreateJwtToken()
+	newJwtToken, err := s.JwtRepo.CreateJwtToken(existUser.ID)
 	if err != nil {
 		return "", err
 	}

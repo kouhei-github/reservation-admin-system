@@ -8,15 +8,14 @@ import (
 )
 
 type JwtToken struct {
-	UserId string
-	Exp    int64
+	Exp int64
 }
 
 // CreateJwtToken
 // JWTトークンの作成
-func (j *JwtToken) CreateJwtToken() (string, error) {
+func (j *JwtToken) CreateJwtToken(userId uint) (string, error) {
 	claims := jwt.MapClaims{
-		"user_id": j.UserId,
+		"user_id": userId,
 		//"exp":     time.Now().Add(time.Hour * limited).Unix(), // 72時間が有効期限
 		"exp": j.Exp,
 	}
@@ -32,7 +31,7 @@ func (j *JwtToken) CreateJwtToken() (string, error) {
 	}
 }
 
-func (j *JwtToken) AuthorizationProcess(tokenString string) (string, error) {
+func (j *JwtToken) AuthorizationProcess(tokenString string) (float64, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
@@ -41,20 +40,18 @@ func (j *JwtToken) AuthorizationProcess(tokenString string) (string, error) {
 		return []byte("ACCESS_SECRET_KEY"), nil
 	})
 	if err != nil {
-		return "", utils.MyError{Message: "tokenの取得に失敗しました"}
+		return 0, utils.MyError{Message: "tokenの取得に失敗しました"}
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok && !token.Valid {
-		return "", utils.MyError{Message: "認可に失敗しました"}
+		return 0, utils.MyError{Message: "認可に失敗しました"}
 	}
-	j.UserId = claims["user_id"].(string)
 	j.Exp = int64(claims["exp"].(float64))
-
 	if j.isExpired() {
-		return "", utils.MyError{Message: "トークンの有効期限が切れております"}
+		return 0, utils.MyError{Message: "トークンの有効期限が切れております"}
 	}
-	return j.UserId, nil
+	return claims["user_id"].(float64), nil
 }
 
 // JWTの期限が切れてるか確認

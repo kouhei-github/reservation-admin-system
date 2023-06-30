@@ -10,6 +10,6 @@ type AdminUserRepository interface {
 }
 
 type AuthJwtToken interface {
-	CreateJwtToken() (string, error)
-	AuthorizationProcess(tokenString string) (string, error)
+	CreateJwtToken(serId uint) (string, error)
+	AuthorizationProcess(tokenString string) (float64, error)
 }
