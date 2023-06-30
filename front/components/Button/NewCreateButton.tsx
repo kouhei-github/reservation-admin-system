@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import PlusIcon from "@/styles/PlusIcon"
-import Button from "./parts/Button";
-import { buttonType } from "./parts/Button";
+import Button from "./parts/LinkButton";
+import { buttonType } from "./parts/LinkButton";
 
 const NewCreateButton = () => {
 
