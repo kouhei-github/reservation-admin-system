@@ -16,7 +16,7 @@ const edit = () => {
         // <div>{router.query.id}</div>
         <AdminLayout>
             <myFormContext.Provider value={customCtx}>
-                <CourseEditForm id={router.query.id}></CourseEditForm>
+                <CourseEditForm id={router.query.id} />
             </myFormContext.Provider>
         </AdminLayout>
     )
