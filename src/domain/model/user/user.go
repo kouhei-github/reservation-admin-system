@@ -1,6 +1,9 @@
 package user
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+	"strconv"
+)
 
 type AdminUser struct {
 	gorm.Model
@@ -13,4 +16,13 @@ type AdminUser struct {
 
 func NewAdminUser(name string, companyId int, email string, password string, isLogin bool) (*AdminUser, error) {
 	return &AdminUser{Email: email, Name: name, CompanyId: companyId, Password: password, IsLogin: isLogin}, nil
+}
+
+func (usr AdminUser) ArrayString() ([]string, error) {
+	userId := strconv.Itoa(int(usr.ID))
+	isLogin := "false"
+	if usr.IsLogin {
+		isLogin = "true"
+	}
+	return []string{userId, usr.Name, usr.Email, isLogin}, nil
 }
