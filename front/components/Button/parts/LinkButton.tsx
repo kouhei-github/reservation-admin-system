@@ -7,7 +7,7 @@ export type buttonType = {
     className: string
 }
 
-const Button = (props: buttonType) => {
+const LinkButton = (props: buttonType) => {
     return(
         <Link 
             className={props.className + " py-2 px-3 inline-flex items-center gap-2 rounded-md border border-transparent font-semibold transition-all text-sm"} 
@@ -19,4 +19,4 @@ const Button = (props: buttonType) => {
     )
 }
 
-export default Button
+export default LinkButton

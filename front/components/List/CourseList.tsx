@@ -10,7 +10,7 @@ const CourseList = () => {
 
     const query = {
         id: 999999,
-        name: "test",
+        setName: "test",
     };
     
     const header: headerColumn= [

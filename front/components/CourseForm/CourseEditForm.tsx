@@ -441,10 +441,10 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
 
             <div className={"flex gap-10 justify-center pb-5"}>
                 <div className={'w-1/3'}>
-                    <div className={"w-full py-3 bg-gray-500 hover:bg-gray-600 text-white cursor-pointer"} onClick={() => validate()}>削除</div>
+                    <button className={"w-full py-3 bg-red-500 hover:bg-red-600 text-white cursor-pointer"} onClick={() => validate()}>削除</button>
                 </div>
                 <div className={'w-1/3'}>
-                    <div className={"w-full py-3 bg-red-500 hover:bg-red-600 text-white cursor-pointer"} onClick={() => validate()}>この内容で更新する</div>
+                    <button className={"w-full py-3 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"} onClick={() => validate()}>この内容で更新する</button>
                 </div>
             </div>
         </div>
