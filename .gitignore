@@ -173,3 +173,4 @@ go.work
 src/tmp
 docker/db/data
 src/vendor
+src/log
