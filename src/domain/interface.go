@@ -7,6 +7,8 @@ import (
 type AdminUserRepository interface {
 	SaveAdminUser(user *user.AdminUser) error
 	FindAdminUserByEmail(email string) (*user.AdminUser, error)
+	UpdateAdminUser(user *user.AdminUser) error
+	FindAdminUserById(id float64) (*user.AdminUser, error)
 }
 
 type AuthJwtToken interface {

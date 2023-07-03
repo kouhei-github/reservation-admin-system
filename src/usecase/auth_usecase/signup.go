@@ -32,7 +32,7 @@ func (s Signup) Signup(name string, companyId int, email string, password string
 	if err != nil {
 		return err
 	}
-	adminUser, err := user.NewAdminUser(name, companyId, mailVo.String(), hashPassword)
+	adminUser, err := user.NewAdminUser(name, companyId, mailVo.String(), hashPassword, false)
 	err = s.AdminUserRepo.SaveAdminUser(adminUser)
 	if err != nil {
 		return err

@@ -8,10 +8,6 @@ import (
 	"net/http"
 )
 
-type responseBody struct {
-	Users float64 `json:"users" binding:"required"`
-}
-
 type GetUserHandle struct {
 	Service *user.GetUser
 }
@@ -32,7 +28,7 @@ func (ru *GetUserHandle) GetUserHandler(w http.ResponseWriter, r *http.Request) 
 	jwtToken := r.Header.Get("Authorization")
 	// パラメータやメソッドなどが諸々正しいことが確認できたら、
 	// サインイン処理はユースケースに依頼
-	token, err := ru.Service.GetUserData(jwtToken)
+	userData, err := ru.Service.GetUserData(jwtToken)
 	if err != nil {
 		response := controller.Response{Status: 500, Text: err.Error()}
 		w.WriteHeader(response.Status)
@@ -40,8 +36,7 @@ func (ru *GetUserHandle) GetUserHandler(w http.ResponseWriter, r *http.Request) 
 		utils.WriteLogFile(err.Error())
 		return
 	}
-
-	response := responseBody{Users: token}
-	json.NewEncoder(w).Encode(response)
+	userData.Password = ""
+	json.NewEncoder(w).Encode(userData)
 	utils.WriteLogFile("完了しました")
 }
