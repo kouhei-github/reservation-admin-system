@@ -4,7 +4,6 @@ import (
 	"net-http/myapp/domain"
 	"net-http/myapp/domain/model/user"
 	"net-http/myapp/utils"
-	"reflect"
 )
 
 type Signup struct {
@@ -17,10 +16,11 @@ func (s Signup) Signup(name string, companyId int, email string, password string
 		return err
 	}
 	existUser, err := s.AdminUserRepo.FindAdminUserByEmail(email)
+
 	if err != nil {
 		return err
 	}
-	if !reflect.ValueOf(existUser).IsZero() {
+	if existUser.ID != 0 {
 		return utils.MyError{Message: "すでにメールアドレスは存在します"}
 	}
 

@@ -17,7 +17,7 @@ func (r *Administer) SaveAdminUser(user *user.AdminUser) error {
 
 func (r *Administer) FindAdminUserByEmail(email string) (*user.AdminUser, error) {
 	var adminUser user.AdminUser
-	result := db.Where("email = ?", email).First(&adminUser)
+	result := db.Find(&adminUser, "email = ?", email)
 	if result.Error != nil {
 		return &adminUser, result.Error
 	}
