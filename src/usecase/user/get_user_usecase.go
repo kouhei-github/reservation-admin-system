@@ -1,8 +1,9 @@
 package user
 
 import (
-	"fmt"
 	"net-http/myapp/domain"
+	"net-http/myapp/domain/model/user"
+	"net-http/myapp/utils"
 )
 
 type GetUser struct {
@@ -10,12 +11,20 @@ type GetUser struct {
 	JwtRepo       domain.AuthJwtToken
 }
 
-func (usr *GetUser) GetUserData(jwtToken string) (float64, error) {
-
+func (usr *GetUser) GetUserData(jwtToken string) (*user.AdminUser, error) {
 	userId, err := usr.JwtRepo.AuthorizationProcess(jwtToken)
-	fmt.Println(userId)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
-	return userId, nil
+
+	userData, err := usr.AdminUserRepo.FindAdminUserById(userId)
+	if err != nil {
+		return nil, err
+	}
+
+	if userData.IsLogin == false {
+		return nil, utils.MyError{Message: "ログインしてください"}
+	}
+
+	return userData, nil
 }

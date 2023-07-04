@@ -43,5 +43,13 @@ func (s *Signin) Signin(email string, password string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	// ユーザーをログイン中に変更
+	existUser.IsLogin = true
+	err = s.AdminUserRepo.UpdateAdminUser(existUser)
+	if err != nil {
+		return "", err
+	}
+
 	return newJwtToken, nil
 }

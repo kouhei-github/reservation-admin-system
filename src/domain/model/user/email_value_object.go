@@ -19,7 +19,7 @@ type Email struct {
 // @return パスワードオブジェクト
 func NewEmail(email string) (*Email, error) {
 	// emailアドレスのフォーマットが正しいか確認
-	if strings.Contains(email, "@") {
+	if !strings.Contains(email, "@") {
 		return nil, fmt.Errorf("is not right email format")
 	}
 	return &Email{value: email}, nil

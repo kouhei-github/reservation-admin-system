@@ -9,6 +9,8 @@ import (
 )
 
 func (router *Router) GetAuthRouter() {
+	router.Mutex.HandleFunc("/auth", controller.HandlerTwo)
+
 	// 認証許可
 	getUser := userHandling.NewGetUserHandler(&user.GetUser{
 		AdminUserRepo: &repository.Administer{},
@@ -16,5 +18,10 @@ func (router *Router) GetAuthRouter() {
 	})
 	router.Mutex.HandleFunc("/api/v1/users", getUser.GetUserHandler)
 
-	router.Mutex.HandleFunc("/auth", controller.HandlerTwo)
+	// 認証許可
+	userExport := userHandling.NewUserExportCsvFile(&user.UserExportCsvFile{
+		AdminUserRepo: &repository.Administer{},
+		JwtRepo:       &auth_infra.JwtToken{},
+	})
+	router.Mutex.HandleFunc("/api/v1/users-export", userExport.ExportCsvUserHandler)
 }
