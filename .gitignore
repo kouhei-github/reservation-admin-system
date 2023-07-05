@@ -175,3 +175,5 @@ docker/db/data
 src/vendor
 src/log/*.log
 cloud_formation_update.yml
+src/public/*
+!src/public/README.md
