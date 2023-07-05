@@ -67,7 +67,7 @@ const UserList = () => {
 
     return (
         <div className={"w-full"}>
-            <h3 className={"text-left text-2xl font-bold bg-white w-max px-3 py-1"}>ユーザー管理</h3>
+            <h3 className={"text-left text-2xl rounded-xl font-bold bg-white w-max px-3 py-1"}>ユーザー管理</h3>
 
             <div className={"mt-16"}>
                 <div className={"my-6 w-11/12 mx-auto flex items-center justify-between"}>

@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -13,5 +14,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerTwo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "auth test")
+	header := w.Header()
+	header.Set("Content-Type", "application/json")
+	var data []interface{}
+	data = []interface{}{
+		"Authテスト", "認証", "認可", 1997, true,
+	}
+
+	json.NewEncoder(w).Encode(data)
 }
