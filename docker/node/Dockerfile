@@ -12,8 +12,8 @@ WORKDIR /var/www/application
 
 COPY ./front /var/www/application
 
-RUN yarn install
 RUN npm install pm2 -g
+RUN yarn install
 
 # ポート3000番を開放する
 EXPOSE 3000
