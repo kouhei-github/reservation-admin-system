@@ -10,6 +10,7 @@ func main() {
 	router := route.Router{Mutex: http.NewServeMux()}
 	router.GetRouter()
 	router.GetAuthRouter()
+	router.GetCourseRouter()
 	// corsについて https://maku77.github.io/p/goruwy4/
 	corsOrigin := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:3000", "https://maku77.github.io"},

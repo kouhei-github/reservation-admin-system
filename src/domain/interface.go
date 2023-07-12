@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"net-http/myapp/domain/model/course"
 	"net-http/myapp/domain/model/user"
 )
 
@@ -21,4 +22,12 @@ type AuthJwtToken interface {
 // Companyに紐つく処理
 type CompanyRepository interface {
 	GetUserData() ([]user.AdminUser, error)
+}
+
+// CourseRepository コースに紐づく処理
+type CourseRepository interface {
+	GetCourseData() ([]course.Course, error)
+	CreateCourse() ([]course.Course, error)
+	EditCourse() ([]course.Course, error)
+	DeleteCourse() error
 }

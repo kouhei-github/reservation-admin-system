@@ -5,8 +5,10 @@ import Radio from '@/components/CourseForm/parts/Radio'
 import Text from '@/components/CourseForm/parts/Text'
 import Select from '@/components/CourseForm/parts/Select'
 import CheckBox from "@/components/CourseForm/parts/CheckBox";
+import {list} from "postcss";
+import courseList from "@/components/List/CourseList";
 
-const CourseEditForm = (props: {id: string | string[] | undefined}) => {
+const CourseEditForm = (props: {id: string | string[]}) => {
     const customCtx = useContext(myFormContext)
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
     ]
 
     const validate = () => {
-        if(customCtx.form.title === "") {
+        if(customCtx.form.course_name === "") {
             alert("コース名を入力してください")
             return
         }
@@ -35,12 +37,13 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
 
     const sendDataToServer = () => {
         console.log("DBに保存")
-        console.log(customCtx.form)
+        const payload = {
+            course_id: props.id,
+            form: customCtx.form
+        }
+        console.log(payload)
     }
 
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
         <div className={'bg-white w-11/12 mx-auto my-10'}>
             <div className={"bg-blue-700 text-white font-bold w-full mx-auto mt-10 py-2 text-left text-xl"}>
@@ -81,7 +84,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["コース料理", "席のみ"]}
-                            property={"kbn"}
+                            property={"course_kbn"}
                             isMultiple={false}
                         />
                     </div>
@@ -96,7 +99,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["対応", "非対応"]}
-                            property={"netReserve"}
+                            property={"is_course_net_reserve"}
                             isMultiple={false}
                         />
                     </div>
@@ -110,7 +113,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             type={"text"}
                             placeholder={""}
                             inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                            property={"title"}
+                            property={"course_name"}
                         />
                     </div>
                     <div>
@@ -138,7 +141,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                         <Text
                             type={"text"}
                             inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                            property={"itemNum"}
+                            property={"item_num"}
                         />
                     </div>
 
@@ -151,7 +154,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer rounded px-4 pt-3 text-[#12243a]'}
                             cols={55}
                             rows={5}
-                            property={"explain"}
+                            property={"description"}
                         />
                     </div>
 
@@ -164,7 +167,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer rounded px-4 pt-3 text-[#12243a]'}
                             cols={55}
                             rows={5}
-                            property={"content"}
+                            property={"contents"}
                         />
                     </div>
 
@@ -178,7 +181,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"drinkCourse"}
+                                    property={"is_drink_course"}
                                 />
                                 <div className={"pl-2"}>飲み放題</div>
                             </div>
@@ -186,7 +189,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"drinkCourseOver3h"}
+                                    property={"is_drink_course_over3h"}
                                 />
                                 <div className={"pl-2"}>3時間以上</div>
                             </div>
@@ -194,7 +197,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"drinkCourseOnly"}
+                                    property={"is_drink_course_only"}
                                 />
                                 <div className={"pl-2"}>飲み放題のみ</div>
                             </div>
@@ -212,7 +215,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5]  cursor-pointer rounded text-[#12243a]'}
-                                    property={"eatCourse"}
+                                    property={"is_buffet"}
                                 />
                                 <div className={"pl-2"}>食べ放題</div>
                             </div>
@@ -248,7 +251,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                         <Select
                             array={["1時間", "1時間30分", "2時間", "2時間30分", "3時間", "3時間30分"]}
                             inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                            property={"stayTime"}
+                            property={"duration"}
                         />
                     </div>
 
@@ -262,7 +265,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["制限する", "制限しない"]}
-                            property={"availablePeople"}
+                            property={"is_available_people"}
                             isMultiple={false}
                         />
                         <div className={"flex mt-5"}>
@@ -270,7 +273,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["1", "2", "3", "4", "99"]}
                                     inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                                    property={"availablePeopleMin"}
+                                    property={"available_min"}
                                 />
                             </div>
                             <div className={"w-[10%] translate-y-1/4"}>〜</div>
@@ -278,7 +281,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["1", "2", "3", "4", "99"]}
                                     inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                                    property={"availablePeopleMax"}
+                                    property={"available_max"}
                                 />
                             </div>
                             <div className={"w-[10%] translate-y-1/4"}>名</div>
@@ -295,7 +298,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["制限する", "制限しない"]}
-                            property={"availableDate"}
+                            property={"is_available_date"}
                             isMultiple={false}
                         />
                         <div className={"flex mt-5"}>
@@ -303,7 +306,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableSun"}
+                                    property={"available_sun"}
                                 />
                                 <div className={"pl-2"}>日</div>
                             </div>
@@ -311,7 +314,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableMon"}
+                                    property={"available_mon"}
                                 />
                                 <div className={"pl-2"}>月</div>
                             </div>
@@ -319,7 +322,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableTue"}
+                                    property={"available_tue"}
                                 />
                                 <div className={"pl-2"}>火</div>
                             </div>
@@ -327,7 +330,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableWed"}
+                                    property={"available_wed"}
                                 />
                                 <div className={"pl-2"}>水</div>
                             </div>
@@ -335,7 +338,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableThu"}
+                                    property={"available_thu"}
                                 />
                                 <div className={"pl-2"}>木</div>
                             </div>
@@ -343,7 +346,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableFri"}
+                                    property={"available_fri"}
                                 />
                                 <div className={"pl-2"}>金</div>
                             </div>
@@ -351,7 +354,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <CheckBox
                                     type={"checkbox"}
                                     inputstyle={'border border-[#bfbec5] cursor-pointer rounded text-[#12243a]'}
-                                    property={"availableSat"}
+                                    property={"available_sat"}
                                 />
                                 <div className={"pl-2"}>土</div>
                             </div>
@@ -368,7 +371,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["制限する", "制限しない"]}
-                            property={"reserveAcceptTime"}
+                            property={"is_available_time"}
                             isMultiple={false}
                         />
                         <div className={"flex mt-5"}>
@@ -377,7 +380,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["06:00", "07:00", "08:00"]}
                                     inputstyle={'border border-[#bfbec5] w-2/5 pl-4 cursor-pointer h-12 items-center grid rounded text-[#12243a] ml-2'}
-                                    property={"reserveAcceptDeadlineDay"}
+                                    property={"available_time_min"}
                                 />
                             </div>
                             <div className={"w-[5%] translate-y-1/4"}>〜</div>
@@ -386,7 +389,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["06:00", "07:00", "08:00"]}
                                     inputstyle={'border border-[#bfbec5] w-2/5 pl-4 cursor-pointer h-12 items-center grid rounded text-[#12243a] ml-2'}
-                                    property={"reserveAcceptDeadTime"}
+                                    property={"available_time_max"}
                                 />
                             </div>
                         </div>
@@ -402,7 +405,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                             btnstyle={'border border-[#bfbec5] text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded text-[#12243a]'}
                             changebtnstyle={'bg-blue-600 text-white text-center mx-auto w-full cursor-pointer h-12 items-center grid rounded'}
                             array={["制限する", "制限しない"]}
-                            property={"availableDate"}
+                            property={"is_reserve_dead_datetime"}
                             isMultiple={false}
                         />
                         <div className={"flex mt-5"}>
@@ -410,7 +413,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["当日", "1日前", "2日前", "3日前"]}
                                     inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                                    property={"availablePeopleMin"}
+                                    property={"reserve_dead_time_min"}
                                 />
                             </div>
                             <div className={"w-[5%] translate-y-1/4"}>の</div>
@@ -418,7 +421,7 @@ const CourseEditForm = (props: {id: string | string[] | undefined}) => {
                                 <Select
                                     array={["00:00", "01:00", "02:00"]}
                                     inputstyle={'border border-[#bfbec5] mx-auto w-full cursor-pointer h-12 items-center grid rounded pl-4 text-[#12243a]'}
-                                    property={"availablePeopleMax"}
+                                    property={"reserve_dead_time_max"}
                             />
                             </div>
                             <div className={"w-[30%] translate-y-1/4 text-left pl-2"}>まで受付可能</div>
