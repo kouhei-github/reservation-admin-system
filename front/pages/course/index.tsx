@@ -16,11 +16,12 @@ export type LoginUserProfileType = {
 
 
 export default function Course() {
+    // @ts-ignore
     return (
         <AdminLayout>
             <div className={"w-[95%] mx-auto"}>
                 <div className={"text-end mt-10"}>
-                    <NewCreateButton />
+                    <NewCreateButton href={"course/form"} />
                 </div>
                 <div className={"mt-3"}>
                     <CourseList />

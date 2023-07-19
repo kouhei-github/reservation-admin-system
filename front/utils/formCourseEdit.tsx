@@ -11,6 +11,10 @@ import {createContext, useCallback, useState} from 'react'
  * DynamoDBに通信する
  */
 export type SendServerData = {
+    // 店舗ID
+    store_id: string,
+    // コースID
+    course_id: string,
     // 掲載状態
     status: string;
     // コース区分
@@ -48,7 +52,7 @@ export type SendServerData = {
     available_min: string;
     available_max: string;
     // 予約可能曜日
-    is_available_date: string;
+    is_available_day: string;
     available_sun: string;
     available_mon: string;
     available_tue: string;
@@ -97,6 +101,8 @@ type MyFormContext = {
 const defaultValue: MyFormContext = {
     // form: {name: "", kana: "", gender: "", employment: "", qualifications: "", prefecturesOfJapan: "", municipalities: "", houseNumber: "", year: "", month: "", day: "", tel: "", mail: "", license: "", contact: "", message: ""},
     form: {
+        store_id: "",
+        course_id: "",
         status: "掲載",
         course_kbn: "コース料理",
         is_course_net_reserve: "対応",
@@ -118,7 +124,7 @@ const defaultValue: MyFormContext = {
         is_available_people: "",
         available_min: "",
         available_max: "",
-        is_available_date: "",
+        is_available_day: "",
         available_sun: "",
         available_mon: "",
         available_tue: "",

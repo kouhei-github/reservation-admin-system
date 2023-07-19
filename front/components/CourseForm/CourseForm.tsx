@@ -5,13 +5,12 @@ import Radio from '@/components/CourseForm/parts/Radio'
 import Text from '@/components/CourseForm/parts/Text'
 import Select from '@/components/CourseForm/parts/Select'
 import CheckBox from "@/components/CourseForm/parts/CheckBox";
-import {list} from "postcss";
-import courseList from "@/components/List/CourseList";
 
-const CourseEditForm = (props: {id: string | string[]}) => {
+
+const CourseForm = () => {
     const customCtx = useContext(myFormContext)
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage] = useState(1);
 
     const dayOfWeek = [
         {value: "日", prop: "availableSun"},
@@ -38,7 +37,6 @@ const CourseEditForm = (props: {id: string | string[]}) => {
     const sendDataToServer = () => {
         console.log("DBに保存")
         const payload = {
-            course_id: props.id,
             form: customCtx.form
         }
         console.log(payload)
@@ -56,7 +54,7 @@ const CourseEditForm = (props: {id: string | string[]}) => {
                             <div className={"px-2 border-l-4 border-blue-700"}>
                                 <div>コース入力</div>
                             </div>
-                            <div className={"text-xs contents"}>(ID:{props.id})</div>
+                            <div className={"text-xs contents"}></div>
                         </div>
                     </div>
                     <div className='border-b pb-8 border-gray-600'>
@@ -174,9 +172,9 @@ const CourseEditForm = (props: {id: string | string[]}) => {
                     <div className='border-b pb-8 border-gray-600'>
                         <div className='flex font-bold items-center mb-1'>
                             <div className='md:text-xs text-[9px] bg-gray-500 py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>任意</div>
-                            <label className={'text-[16px] text-[#12243a]'}>飲み放題</label>
+                            <label className={'text-[16px] text-[#12243a]'}>飲み放題／食べ放題</label>
                         </div>
-                        <div className={"flex"}>
+                        <div className={"flex mt-3"}>
                             <div className={"w-1/3 flex"}>
                                 <CheckBox
                                     type={"checkbox"}
@@ -202,15 +200,7 @@ const CourseEditForm = (props: {id: string | string[]}) => {
                                 <div className={"pl-2"}>飲み放題のみ</div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div className='border-b pb-8 border-gray-600'>
-                        <div className='flex font-bold items-center mb-1'>
-                            <div className='md:text-xs text-[9px] bg-gray-500 py-[2px] px-2 text-white rounded mr-2 h-5 pb-2'>任意</div>
-                            <label className={'text-[16px] text-[#12243a]'}>食べ放題</label>
-                        </div>
-                        <div className={"flex"}>
+                        <div className={"flex mt-3 pt-3 border-t-2"}>
                             <div className={"w-1/3 flex"}>
                                 <CheckBox
                                     type={"checkbox"}
@@ -447,11 +437,11 @@ const CourseEditForm = (props: {id: string | string[]}) => {
                     <button className={"w-full py-3 bg-red-500 hover:bg-red-600 text-white cursor-pointer"} onClick={() => validate()}>削除</button>
                 </div>
                 <div className={'w-1/3'}>
-                    <button className={"w-full py-3 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"} onClick={() => validate()}>この内容で更新する</button>
+                    <button className={"w-full py-3 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"} onClick={() => validate()}>この内容で作成する</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default CourseEditForm;
+export default CourseForm;

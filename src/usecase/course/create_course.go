@@ -3,14 +3,14 @@ package course
 import (
 	"encoding/json"
 	"net-http/myapp/domain"
-	"net-http/myapp/repository"
 	"net-http/myapp/usecase/course/util"
 	"net-http/myapp/utils"
 )
 
 type CreateCourse struct {
-	AdminUserRepo domain.AdminUserRepository
-	JwtRepo       domain.AuthJwtToken
+	AdminUserRepo    domain.AdminUserRepository
+	JwtRepo          domain.AuthJwtToken
+	courseRepository domain.CourseRepository
 }
 
 // CreateCourse コース新規作成ユースケース
@@ -29,9 +29,6 @@ func (c CreateCourse) CreateCourse(jwtToken string, parameterBody *json.Decoder)
 		return utils.MyError{Message: "ログインしてください"}
 	}
 
-	courseRepository := &repository.Course{CompanyId: userData.CompanyId}
-	//company := &repository.Company{CompanyId: 000000}
-
 	// コース型に変換
 	utility := util.NewUtility()
 	courseForm, err := utility.ToCourse(parameterBody)
@@ -40,7 +37,7 @@ func (c CreateCourse) CreateCourse(jwtToken string, parameterBody *json.Decoder)
 	}
 
 	// DB：insert interfaceを通す
-	err = courseRepository.InsertCourse(courseForm)
+	err = c.courseRepository.Insert(courseForm)
 	if err != nil {
 		return err
 	}

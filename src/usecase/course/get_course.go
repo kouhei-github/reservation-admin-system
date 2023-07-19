@@ -1,20 +1,20 @@
 package course
 
 import (
-	"log"
 	"net-http/myapp/domain"
-	"net-http/myapp/repository"
+	"net-http/myapp/domain/model/course"
 	"net-http/myapp/usecase/course/util"
 	"net-http/myapp/utils"
 )
 
 type GetCourse struct {
-	AdminUserRepo domain.AdminUserRepository
-	JwtRepo       domain.AuthJwtToken
+	AdminUserRepo    domain.AdminUserRepository
+	JwtRepo          domain.AuthJwtToken
+	courseRepository domain.CourseRepository
 }
 
-// GetCourseData コース情報取得ユースケース
-func (c *GetCourse) GetCourseData(jwtToken string) ([][]string, error) {
+// GetCourse コース情報取得ユースケース
+func (c *GetCourse) GetCourse(jwtToken string) ([]*course.FrontCourseData, error) {
 	userId, err := c.JwtRepo.AuthorizationProcess(jwtToken)
 	if err != nil {
 		return nil, err
@@ -29,22 +29,21 @@ func (c *GetCourse) GetCourseData(jwtToken string) ([][]string, error) {
 		return nil, utils.MyError{Message: "ログインしてください"}
 	}
 
-	courseRepository := &repository.Course{CompanyId: userData.CompanyId}
-	//company := &repository.Company{CompanyId: 000000}
-
 	// DB：select interfaceを通す
-	courses, err := courseRepository.SelectCourseData()
-	if err != nil {
-		return [][]string{
-			{""},
-		}, err
-	}
-	// TODO 共通メソッドを使用して、course型に変更し、jsonにエンコードして返却したい
-	result, err := util.NewUtility().GetCourseDataToArray(courses)
+	courseData, err := c.courseRepository.Select()
 	if err != nil {
 		return nil, err
 	}
-	log.Print(result)
+	var resultArray []*course.FrontCourseData
+	utility := util.NewUtility()
+	// TODO FrontCourseData型に変更 上層でエンコードするからここではエンコードしなくていい？
+	for _, targetData := range courseData {
+		frontCourseData, err := utility.ToFrontCourseData(&targetData)
+		if err != nil {
+			return nil, err
+		}
+		resultArray = append(resultArray, frontCourseData)
+	}
 
-	return result, nil
+	return resultArray, nil
 }

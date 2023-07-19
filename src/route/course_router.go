@@ -28,7 +28,7 @@ func (router *Router) GetCourseRouter() {
 		AdminUserRepo: &repository.Administer{},
 		JwtRepo:       &auth_infra.JwtToken{},
 	})
-	router.Mutex.HandleFunc("/api/v1/course/edit", EditCourse.EditCourseHandler)
+	router.Mutex.HandleFunc("/api/v1/course/form", EditCourse.EditCourseHandler)
 
 	// 削除（論理削除）
 	DeleteCourse := courseHandling.NewDeleteCourseHandler(&course.DeleteCourse{

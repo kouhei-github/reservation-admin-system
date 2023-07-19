@@ -25,8 +25,25 @@ func (u Utility) GetCourseDataToArray(courses []course.Course) ([][]string, erro
 	return result, nil
 }
 
-// ToCourse TODO Course型に変換 引数型要検討
-func (u Utility) ToCourse(body *json.Decoder) (course.Course, error) {
-	var courseForm = course.Course{}
+func (u Utility) ToFrontCourseData(courseData *course.Course) (*course.FrontCourseData, error) {
+	var frontCourseData *course.FrontCourseData
+	frontCourseData, err := course.NewFrontCourseData(courseData)
+	if err != nil {
+		return nil, err
+	}
+	return frontCourseData, nil
+}
+
+// ToCourse Course型に変換
+func (u Utility) ToCourse(body *json.Decoder) (*course.Course, error) {
+	var frontCourseData course.FrontCourseData
+	err := body.Decode(&frontCourseData)
+	if err != nil {
+		return nil, err
+	}
+	courseForm, err := course.NewCourse(frontCourseData)
+	if err != nil {
+		return nil, err
+	}
 	return courseForm, nil
 }

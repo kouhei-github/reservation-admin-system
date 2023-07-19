@@ -26,8 +26,8 @@ type CompanyRepository interface {
 
 // CourseRepository コースに紐づく処理
 type CourseRepository interface {
-	GetCourseData() ([]course.Course, error)
-	CreateCourse() ([]course.Course, error)
-	EditCourse() ([]course.Course, error)
-	DeleteCourse() error
+	Select() ([]course.Course, error)
+	Insert(course *course.Course) error
+	Update(course *course.Course) error
+	Delete() error
 }

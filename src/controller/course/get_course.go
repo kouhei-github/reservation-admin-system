@@ -28,14 +28,20 @@ func (ru *GetCourseHandle) GetCourseHandler(w http.ResponseWriter, r *http.Reque
 
 	jwtToken := r.Header.Get("Authorization")
 	// usecase呼び出し
-	courses, err := ru.Service.GetCourseData(jwtToken)
+	courses, err := ru.Service.GetCourse(jwtToken)
 	if err != nil {
 		response := controller.Response{Status: 500, Text: err.Error()}
 		w.WriteHeader(response.Status)
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 		utils.WriteLogFile(err.Error())
 		return
 	}
-	json.NewEncoder(w).Encode(courses)
+	err = json.NewEncoder(w).Encode(courses)
+	if err != nil {
+		return
+	}
 	utils.WriteLogFile("完了しました")
 }

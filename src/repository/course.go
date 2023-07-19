@@ -9,7 +9,7 @@ type Course struct {
 	CourseId  int    `json:"course_id" binding:"required"`
 }
 
-func (c *Course) SelectCourseData() ([]course.Course, error) {
+func (c *Course) Select() ([]course.Course, error) {
 	var courses []course.Course
 	result := db.Table("m_course").Where("company_id = ?", c.CompanyId).Find(&courses)
 	if result.Error != nil {
@@ -18,7 +18,7 @@ func (c *Course) SelectCourseData() ([]course.Course, error) {
 	return courses, nil
 }
 
-func (c *Course) InsertCourse(course course.Course) error {
+func (c *Course) Insert(course course.Course) error {
 	result := db.Table("m_course").Create(course)
 	if result.Error != nil {
 		return result.Error
@@ -26,7 +26,7 @@ func (c *Course) InsertCourse(course course.Course) error {
 	return nil
 }
 
-func (c *Course) UpdateCourse(course course.Course) error {
+func (c *Course) Update(course course.Course) error {
 	result := db.Table("m_course").Where("company_id = ? and course_id = ?", c.CompanyId, c.CourseId).Save(&course)
 	if result.Error != nil {
 		return result.Error
@@ -34,7 +34,7 @@ func (c *Course) UpdateCourse(course course.Course) error {
 	return nil
 }
 
-func (c *Course) DeleteCourse() error {
+func (c *Course) Delete() error {
 	result := db.Table("m_course").Where("company_id = ? and course_id = ?", c.CompanyId, c.CourseId).Update("is_delete", false)
 	if result.Error != nil {
 		return result.Error
