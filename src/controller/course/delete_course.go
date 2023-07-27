@@ -19,7 +19,7 @@ func NewDeleteCourseHandler(s *course.DeleteCourse) *DeleteCourseHandle {
 // DeleteCourseHandler コース削除コントローラー
 func (ru *DeleteCourseHandle) DeleteCourseHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	if r.Method != "GET" {
+	if r.Method != "POST" {
 		response := controller.Response{Status: 405, Text: "Method Not Allowed"}
 		w.WriteHeader(405)
 		json.NewEncoder(w).Encode(response)
