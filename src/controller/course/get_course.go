@@ -32,16 +32,10 @@ func (ru *GetCourseHandle) GetCourseHandler(w http.ResponseWriter, r *http.Reque
 	if err != nil {
 		response := controller.Response{Status: 500, Text: err.Error()}
 		w.WriteHeader(response.Status)
-		err := json.NewEncoder(w).Encode(response)
-		if err != nil {
-			return
-		}
+		json.NewEncoder(w).Encode(response)
 		utils.WriteLogFile(err.Error())
 		return
 	}
-	err = json.NewEncoder(w).Encode(courses)
-	if err != nil {
-		return
-	}
+	json.NewEncoder(w).Encode(courses)
 	utils.WriteLogFile("完了しました")
 }

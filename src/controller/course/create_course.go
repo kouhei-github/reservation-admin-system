@@ -22,10 +22,7 @@ func (ru *CreateCourseHandle) CreateCourseHandler(w http.ResponseWriter, r *http
 	if r.Method != "POST" {
 		response := controller.Response{Status: 405, Text: "Method Not Allowed"}
 		w.WriteHeader(405)
-		err := json.NewEncoder(w).Encode(response)
-		if err != nil {
-			return
-		}
+		json.NewEncoder(w).Encode(response)
 		return
 	}
 
@@ -35,16 +32,10 @@ func (ru *CreateCourseHandle) CreateCourseHandler(w http.ResponseWriter, r *http
 	if err != nil {
 		response := controller.Response{Status: 500, Text: err.Error()}
 		w.WriteHeader(response.Status)
-		err := json.NewEncoder(w).Encode(response)
-		if err != nil {
-			return
-		}
+		json.NewEncoder(w).Encode(response)
 		utils.WriteLogFile(err.Error())
 		return
 	}
-	err = json.NewEncoder(w).Encode("")
-	if err != nil {
-		return
-	}
+	json.NewEncoder(w).Encode("")
 	utils.WriteLogFile("完了しました")
 }

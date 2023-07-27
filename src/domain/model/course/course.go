@@ -40,9 +40,13 @@ type Course struct {
 var timeFormat = "2006-01-02 15:04:05"
 
 func NewCourse(courseFront FrontCourseData) (*Course, error) {
-	storeId, err := strconv.Atoi(courseFront.StoreId)
-	if err != nil {
-		return nil, fmt.Errorf("is not right storeId format")
+	var storeId int = 0
+	if courseFront.StoreId != "" {
+		value, err := strconv.Atoi(courseFront.StoreId)
+		if err != nil {
+			return nil, fmt.Errorf("is not right storeId format")
+		}
+		storeId = value
 	}
 	courseId, err := strconv.Atoi(courseFront.CourseId)
 	if err != nil {
