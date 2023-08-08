@@ -14,7 +14,7 @@ type CreateCourse struct {
 }
 
 // CreateCourse コース新規作成ユースケース
-func (c CreateCourse) CreateCourse(jwtToken string, parameterBody *json.Decoder) error {
+func (c *CreateCourse) CreateCourse(jwtToken string, parameterBody *json.Decoder) error {
 	userId, err := c.JwtRepo.AuthorizationProcess(jwtToken)
 	if err != nil {
 		return err

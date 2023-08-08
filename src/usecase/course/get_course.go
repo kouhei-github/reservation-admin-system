@@ -36,7 +36,7 @@ func (c *GetCourse) GetCourse(jwtToken string) ([]*course.FrontCourseData, error
 	}
 	var resultArray []*course.FrontCourseData
 	utility := util.NewUtility()
-	// TODO FrontCourseData型に変更 上層でエンコードするからここではエンコードしなくていい？
+	//TODO FrontCourseData型に変更 上層でエンコードするからここではエンコードしなくていい？
 	for _, targetData := range courseData {
 		frontCourseData, err := utility.ToFrontCourseData(&targetData)
 		if err != nil {

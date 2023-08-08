@@ -1,4 +1,4 @@
-package course
+package utils
 
 import (
 	"fmt"
@@ -6,14 +6,10 @@ import (
 	"unicode/utf8"
 )
 
-type TargetValue struct {
-	value string
-}
-
-func CheckCharLength(checkValue string, checkLength int) (*TargetValue, error) {
+func CheckCharLength(checkValue string, checkLength int) (*string, error) {
 	value := checkValue
 	if utf8.RuneCountInString(value) > checkLength {
 		return nil, fmt.Errorf("is invalid number of characters (" + strconv.Itoa(checkLength) + ")")
 	}
-	return &TargetValue{value: value}, nil
+	return &value, nil
 }

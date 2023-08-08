@@ -2,6 +2,7 @@ package course
 
 import (
 	"fmt"
+	"net-http/myapp/utils"
 	"reflect"
 	"strconv"
 	"time"
@@ -35,6 +36,11 @@ type Course struct {
 	ReserveDeadTimeMax    time.Time `json:"reserve_dead_time_max"`
 	IsHidden              bool      `json:"is_hidden"`
 	IsDelete              bool      `json:"is_delete"`
+	CreateUser            string    `json:"create_user"`
+	CreateAt              time.Time `json:"create_at"`
+	UpdateUser            string    `json:"update_user"`
+	UpdateAt              time.Time `json:"update_at"`
+	Remarks               string    `json:"remarks"`
 }
 
 var timeFormat = "2006-01-02 15:04:05"
@@ -52,7 +58,7 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 		}
 		courseId = value
 	}
-	courseName, err := CheckCharLength(courseFront.CourseName, 50)
+	courseName, err := utils.CheckCharLength(courseFront.CourseName, 50)
 	if err != nil {
 		return nil, err
 	}
@@ -72,11 +78,11 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 	if err != nil {
 		return nil, fmt.Errorf("is not right itemNum format")
 	}
-	description, err := CheckCharLength(courseFront.Description, 200)
+	description, err := utils.CheckCharLength(courseFront.Description, 200)
 	if err != nil {
 		return nil, err
 	}
-	contents, err := CheckCharLength(courseFront.Contents, 200)
+	contents, err := utils.CheckCharLength(courseFront.Contents, 200)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +94,7 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 	if err != nil {
 		return nil, err
 	}
-	notes, err := CheckCharLength(courseFront.Notes, 200)
+	notes, err := utils.CheckCharLength(courseFront.Notes, 200)
 	if err != nil {
 		return nil, err
 	}
@@ -140,7 +146,7 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 	if err != nil {
 		return nil, err
 	}
-	reserveDeadTimeMin, err := CheckCharLength(courseFront.ReserveDeadTimeMin, 10)
+	reserveDeadTimeMin, err := utils.CheckCharLength(courseFront.ReserveDeadTimeMin, 10)
 	if err != nil {
 		return nil, err
 	}
@@ -156,16 +162,16 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 	return &Course{
 		StoreId:               storeId,
 		CourseId:              courseId,
-		CourseName:            courseName.value,
+		CourseName:            *courseName,
 		CourseKbn:             courseKbn.value,
 		IsCourseNetReserve:    isCourseNetReserve.value,
 		Price:                 price,
 		ItemNum:               itemNum,
-		Description:           description.value,
-		Contents:              contents.value,
+		Description:           *description,
+		Contents:              *contents,
 		FreeDrinkKbn:          freeDrinkKbn.value,
 		IsBuffet:              isBuffet,
-		Notes:                 notes.value,
+		Notes:                 *notes,
 		Duration:              duration,
 		IsAvailablePeople:     isAvailablePeople,
 		AvailableMin:          availableMin,
@@ -176,10 +182,15 @@ func NewCourse(courseFront FrontCourseData) (*Course, error) {
 		AvailableTimeMin:      availableTimeMin,
 		AvailableTimeMax:      availableTimeMax,
 		IsReserveDeadDatetime: isReserveDeadDatetime,
-		ReserveDeadTimeMin:    reserveDeadTimeMin.value,
+		ReserveDeadTimeMin:    *reserveDeadTimeMin,
 		ReserveDeadTimeMax:    reserveDeadTimeMax,
 		IsHidden:              isHidden.value,
 		IsDelete:              false,
+		CreateUser:            "SYS",
+		CreateAt:              time.Now(),
+		UpdateUser:            "SYS",
+		UpdateAt:              time.Now(),
+		Remarks:               "",
 	}, nil
 }
 

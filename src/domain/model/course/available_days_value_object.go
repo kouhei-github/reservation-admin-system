@@ -33,6 +33,7 @@ func NewAvailableDays(
 	if !slices.Contains(fromFrontArray, "true") && !slices.Contains(fromFrontArray, "false") {
 		return nil, fmt.Errorf("is not right isDrinkCourse format")
 	}
+	// TODO true文字列修正
 	for i, v := range fromFrontArray {
 		if v == "true" {
 			array = append(array, strconv.Itoa(i))
