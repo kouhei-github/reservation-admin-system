@@ -89,7 +89,7 @@ const ReserveCalendarBase = (props: {dataList: EventInput[]}) =>  {
 
 
     const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
-    const [modalProps, setModalProps] = useState<ModalProps | undefined>()
+    const [modalProps, setModalProps] = useState<ModalProps>()
     const [userData, setUserData] = useState<UserDataType>({name: "", srtTime: "", endTime: ""})
 
     // 時間表示制御
@@ -112,10 +112,9 @@ const ReserveCalendarBase = (props: {dataList: EventInput[]}) =>  {
     let eventGuid = 0
     const createEventId = () => String(eventGuid++);
 
-    const handleEvents = useCallback(
-        (events: EventApi[]) => setCurrentEvents(events),
-        []
-    );
+    const handleEvents = (events: EventApi[]) => {
+        setCurrentEvents(events)
+    }
 
     // modal表示
     // 新規作成

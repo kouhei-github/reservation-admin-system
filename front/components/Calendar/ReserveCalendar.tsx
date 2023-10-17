@@ -14,7 +14,7 @@ const ReserveCalendar = () => {
     ];
 
     return(
-        <ReserveCalendarBase dataList={data}></ReserveCalendarBase>
+        <ReserveCalendarBase dataList={data} />
     )
 }
 

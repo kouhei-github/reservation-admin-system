@@ -35,7 +35,7 @@ const CourseList = () => {
             {text: "1～8名"},
             {text: "2時間"},
             {text: "02/01"},
-            {text: "編集", element: <Link className={"text-blue-600 hover:text-blue-800"} href={{ pathname: "course/edit", query: query }}>編集</Link>},
+            {text: "編集", element: <Link className={"text-blue-600 hover:text-blue-800"} href={{ pathname: "course/form", query: query }}>編集</Link>},
         ],
         [
             {text: "食べログ"},
